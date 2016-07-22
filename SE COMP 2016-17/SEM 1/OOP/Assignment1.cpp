@@ -49,6 +49,7 @@ void Calculator::calculate()
 			break;
 		default :
 			cout<<"Incorrect operator!"<<endl;
+			result =0;
 			break;
 	}
 
@@ -84,3 +85,29 @@ int main()
 	}
 	return 0;
 }
+**************************************************************************************************
+Enter two numbers: 3 4
+Enter the operand: -
+3 - 4 is: -1
+Do you want to add another number to the result? (y)n
+Do You Want To Continue? (y)
+y
+Enter two numbers: 5 7
+Enter the operand: +
+5 + 7 is: 12
+Do you want to add another number to the result? (y)n
+Do You Want To Continue? (y)
+y
+Enter two numbers: 4 1
+Enter the operand: /
+4 / 1 is: 4
+Do you want to add another number to the result? (y)n
+Do You Want To Continue? (y)
+y
+Enter two numbers: 4 6
+Enter the operand: *
+4 * 6 is: 24
+Do you want to add another number to the result? (y)n
+Do You Want To Continue? (y)
+
+
