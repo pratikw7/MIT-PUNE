@@ -55,3 +55,74 @@ int main()
 	}while(inp =='y');
 	return 0;
 }
+***********************************************************************
+Set of students in Class: 
+Enter size of set: 4
+Enter student name: Ashwin
+Enter roll number: 30
+Enter student name: Tony
+Enter roll number: 32
+Enter student name: Stark  
+Enter roll number: 45
+Enter student name: Bruce
+Enter roll number: 12
+Set of students who play cricket: 
+Enter size of set: 2
+Enter student name: Tony
+Enter roll number: 32
+Enter student name: Bruce
+Enter roll number: 12
+Set of students who play Badminton: 
+Enter size of set: 2
+Enter student name: Bruce
+Enter roll number: 12
+Enter student name: Bruce
+Enter roll number: 12
+Input data already exists in the set
+Enter student name: Stark
+Enter roll number: 45
+1. Set of students who play either cricket or badminton or both
+2. Set of students who play both cricket and badminton
+3. Set of students who play only Cricket
+4. Set of students who play only Badminton
+5. Set of students who play neither badminton nor cricket
+1
+Union of Sets is:
+Bruce		12
+Stark		45
+Tony		32
+Do you want to continue? (y)y
+1. Set of students who play either cricket or badminton or both
+2. Set of students who play both cricket and badminton
+3. Set of students who play only Cricket
+4. Set of students who play only Badminton
+5. Set of students who play neither badminton nor cricket
+2
+
+Intersection of Sets is:
+Bruce		12
+Do you want to continue? (y)y
+1. Set of students who play either cricket or badminton or both
+2. Set of students who play both cricket and badminton
+3. Set of students who play only Cricket
+4. Set of students who play only Badminton
+5. Set of students who play neither badminton nor cricket
+3
+Tony		32
+Do you want to continue? (y)y
+1. Set of students who play either cricket or badminton or both
+2. Set of students who play both cricket and badminton
+3. Set of students who play only Cricket
+4. Set of students who play only Badminton
+5. Set of students who play neither badminton nor cricket
+4
+Stark		45
+Do you want to continue? (y)y
+1. Set of students who play either cricket or badminton or both
+2. Set of students who play both cricket and badminton
+3. Set of students who play only Cricket
+4. Set of students who play only Badminton
+5. Set of students who play neither badminton nor cricket
+5
+Ashwin		30
+Do you want to continue? (y)n
