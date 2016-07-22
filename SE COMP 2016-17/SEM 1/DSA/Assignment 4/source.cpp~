@@ -1,8 +1,72 @@
 #include <iostream>
+#include <stdio.h>
+#include "stringFunctions.h"
 using namespace std;
 
 int main()
 {
-	cout<<"Hello:\n";
+	stringFunctions sStr1, sStr2, sStr3;
+	char inp;
+        cout<<"Enter string 1\n";
+	sStr1.vGetStr();
+        cout<<"Enter string 2\n";
+        sStr2.vGetStr();
+
+
+
+	do
+	{
+	cout<<"1. Get string length of both\n";
+	cout<<"2. Copy string 1 in string 2\n";
+	cout<<"3. Reverse Strings\n";
+	cout<<"4. Concatenate string 1 with string 2\n";
+	cout<<"5. Check if both are equal\n";
+	cout<<"6. Check substring in string 1\n";
+	cin>>inp;
+	cin.ignore();
+	switch(inp)
+	{
+	case '1':
+      		cout<<"Length of string 1: "<<sStr1.iStrLen()<<endl;
+  		cout<<"Length of string 2: "<<sStr2.iStrLen()<<endl;
+  		break;
+	case '2':
+      		sStr2.vStrcpy(sStr1);
+  		cout<<"New string 2 is : ";
+  		sStr1.vPutStr();
+		cout<<endl;
+  		break;
+	case '3':
+		cout<<"Reverse of fist string is : ";
+		sStr1.vReverse();
+  		cout<<"\nReverse of second string is : ";
+      		sStr2.vReverse();
+		cout<<endl;
+  		break;
+	case '4':
+		cout<<"New String is : ";
+		sStr1.vConcat(sStr2);
+  		sStr1.vPutStr();
+		cout<<endl;
+  		break;
+	case '5':
+        	if(sStr1.bIsEqual(sStr2))
+          	 cout<<"Both are Equal\n";
+		else
+		 cout<<"Both are not equal\n";
+  		break;
+	case '6':
+        	cout<<"Enter substring\n";
+        	sStr3.vGetStr();
+		sStr1.vCheckSubstr(sStr3);
+  		break;
+	default:
+		cout<<"Enter a valid option\n";
+		break;
+	}
+	puts("Do you want to continue? (y)\n");
+	cin>>inp;
+	cin.ignore();
+	}while(inp=='y');
 	return 0;
 }

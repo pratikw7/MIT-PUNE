@@ -62,7 +62,7 @@ void cMatrix::vSumofDiagEle()
 			if(i==j)
 			{
 				iSum1 += iMatrixArray[i][j];
-				iSum2 += iMatrixArray[i][(iRowSize-1)-i];
+				iSum2 += iMatrixArray[(iRowSize-1)-i][(iColSize-1)-j];
 			}
 		}
 
