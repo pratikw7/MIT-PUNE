@@ -1,0 +1,267 @@
+//-----------------Ashwin Vaidya-----------------
+//------------------202030-----------------------
+//--------------------SE1------------------------
+
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <stdio.h>
+
+using namespace std;
+
+struct sNode
+{
+	char cName[40];
+	int iPRN;
+	char cRole[40];
+	sNode *next;
+};
+
+class SLL
+{
+sNode *head;
+public:
+	SLL();
+	//~SLL();
+	void vInsert();
+	void vDelete();
+	void vDisplay();
+	void vRevDisplay(){vRevDisplay(head);}
+	void vRevDisplay(sNode *);
+	void vConcat(SLL);
+	int vCount();
+};
+
+SLL::SLL()
+{
+	head=NULL;
+	//last=head;
+}
+
+void SLL::vConcat(SLL S2)
+{
+	if(S2.head!= NULL){
+	sNode *curr, *temp = head->next;
+	head->next = S2.head;
+	curr = S2.head;
+	if(strcmp(S2.head->cRole, "President")==0)
+		strcpy(S2.head->cRole,"Vice President");
+	while(curr->next!=NULL)
+		{
+			curr = curr->next;
+		}
+		if(strcmp(curr->cRole, "Secretary")==0)
+			strcpy(curr->cRole,"Vice Secretary");
+			curr->next = temp;
+	}
+	
+}
+
+int SLL::vCount()
+{
+	int count=0;
+	sNode *curr= head;
+	while(curr!=NULL)
+		{
+			count++;
+			curr= curr->next;
+		}
+	return count;
+}
+
+void SLL::vDisplay()
+{
+	cout<<"-----------------------------\n";
+	sNode *curr= head;
+	if(head==NULL){
+		cout<<"Empty List!\n";
+	return;
+	}
+	while(curr!=NULL)
+	{
+	cout<<"Address of current node: "<<curr<<endl;
+	cout<<"Address of next node: "<<(curr->next)<<endl;
+	cout<<"Name: "<<curr->cName<<endl;
+	cout<<"PRN: "<<curr->iPRN<<endl;
+	cout<<"Role: "<<curr->cRole<<endl;
+	curr = curr->next;
+	cout<<"----------------------------\n";
+	}
+}
+
+void SLL::vRevDisplay(sNode *n)
+{
+	if(n->next!= NULL)
+		vRevDisplay(n->next);
+	cout<<"----------------------------\n";
+	cout<<"Address of current node: "<<&n<<endl;
+	cout<<"Address of next node: "<<&(n->next)<<endl;
+	cout<<"Name: "<<n->cName<<endl;
+	cout<<"PRN: "<<n->iPRN<<endl;
+	cout<<"Role: "<<n->cRole<<endl;
+	cout<<"----------------------------\n";
+}
+
+void SLL::vDelete()
+{
+	if(head==NULL)
+		{
+			cout<<"Underflow!\n";
+			return;
+		}
+	char cN[40];
+	int iP;
+	cout<<"Enter details of member you want to remove\n";
+	cout<<"Enter name of Member: ";
+	cin.ignore();
+	gets(cN);
+	cout<<"Enter PRN of member: ";
+	cin>>iP;
+	sNode *prev,*temp,*curr = head;
+	
+	if(strcmp(cN,head->cName)==0 &&iP==head->iPRN)
+			{
+				temp = head;
+				head = NULL;
+				delete temp;
+				cout<<"Record deleted!\n";
+				return;
+			}	
+	while(curr!=NULL)
+	{
+
+		if(strcmp(cN,curr->cName)==0 &&iP==curr->iPRN)
+		{
+			temp= curr;
+			prev->next = curr->next;
+			delete temp;
+			cout<<"Record deleted!\n";
+			return;
+		}
+		prev = curr;
+		curr=curr->next;
+	}
+	cout<<"Record not found!\n";
+}
+
+void SLL::vInsert()
+{
+	sNode *temp = new sNode;
+	sNode *last = NULL;	
+	if(head!=NULL)
+	{	
+	last = head;
+	while(last->next!=NULL)
+		last=last->next;
+	}
+	cout<<"Enter name: ";
+	cin.ignore();
+	gets(temp->cName);
+	cout<<"Enter PRN: ";
+	cin>>temp->iPRN;
+	cout<<"Enter his/her role: ";
+	cin>>(temp->cRole);
+	temp->next=NULL;
+
+	if(head==NULL)
+		{
+		head = temp;
+		head->next = last;
+		last = head;
+		}
+	else if(strcmp(temp->cRole, "President") == 0)
+		{
+			if(strcmp(head->cRole,"President")==0)
+				{
+				cout<<"President already exists!\n";
+				delete temp;
+				}
+			else
+				{
+					temp->next = head;
+					head = temp;
+				}
+		}
+	else if(strcmp(temp->cRole, "Secretary")==0)
+		{
+			if(strcmp(last->cRole,"Secretary" )==0)
+				{
+				cout<<"Secretary already exists!\n";
+				delete temp;
+				}
+			else
+				{
+					temp->next = NULL;
+					last->next = temp;
+					last = temp;
+				}
+		}
+	else
+	{
+		if(last==head)
+		{
+			head->next = temp;
+			temp->next = NULL;
+			last=temp;
+		}
+		else{
+		temp->next = head->next;
+		head->next = temp;
+		}
+	}
+}
+
+int main()
+{
+	SLL club,S2;
+	int no;
+	char n;
+	do
+	{
+	cout<<"1. Add Member\n";
+	cout<<"2. Remove Member\n";
+	cout<<"3. Display List\n";
+	cout<<"4. Number of records\n";
+	cout<<"5. Display the list in reverse\n";
+	cout<<"6. Concatenate two list\n";
+	cin>>n;
+	switch(n)
+	   {
+		case '1':
+			club.vInsert();
+			break;
+		case '2':
+			club.vDelete();
+			break;
+		case '3':
+			club.vDisplay();
+			break;
+		case '4':
+			cout<<"Number of members in the club: "<<club.vCount()<<endl;
+			break;
+		case '5':
+			cout<<"List is reverse: \n";
+			club.vRevDisplay();
+			break;
+		case '6':
+			cout<<"Enter number of members in another list: \n";
+			cin>>no;
+			while(no--)
+			{
+			S2.vInsert();
+			}
+			cout<<"Members of first club are:\n";
+			club.vDisplay();
+			cout<<"Members of second club are:\n";
+			S2.vDisplay();
+			cout<<"Concatenated result\n";
+			club.vConcat(S2);
+			club.vDisplay();
+			break;
+	   }
+	cout<<"Do you want to continue? (y)";
+	cin>>n;
+	}while(n=='y');
+	return 0;
+}
+

@@ -1,0 +1,108 @@
+/*
+ * student.cpp
+ *
+ *  	SE 202030
+ *      Author: Ashwin Vaidya
+ */
+
+#include "student.h"
+#include <stdio.h>
+
+Student::Student()
+{
+	
+	iRoll = -1;
+	iPhoneNo = -1;
+	DOB.DD= -1;
+	DOB.MM= -1;
+	DOB.YY= -1;
+}
+Student::Student(Student &s)
+{
+		
+		sName = s.sName;
+		iRoll = s.iRoll;
+		iPhoneNo = s.iPhoneNo;
+		sAddr = s.sAddr;
+		sClass= s.sClass;
+		sBloodGrp = s.sBloodGrp;
+		DOB.DD = s.DOB.DD;
+		DOB.MM = s.DOB.MM;
+		DOB.YY = s.DOB.YY;
+		iNoOfStudents++;
+}
+/*Student::Student(char* name, char* address,char* sCls, char* BG, int roll, unsigned long int phoneNo, int D, int M, int Y)
+{
+	//sName = new char[15];
+	//sAddr = new char[15];
+	//sClass = new char[2];
+	sName = name;
+	sAddr = address;
+	sClass = sCls;
+	sBloodGrp = BG;
+	iRoll = roll;
+	iPhoneNo = phoneNo;
+	DOB.DD = D;
+	DOB.MM = M;
+	DOB.YY = Y;
+}*/
+int Student::iNoOfStudents;
+void Student::vAddDetails() 
+{
+		sName = new char[15];
+		cout<<"Enter name: ";
+		cin.ignore();
+		gets(sName);
+		cout<<"Enter roll number: ";
+		cin>>iRoll;
+		cout<<"Enter phone number: ";
+		cin>>iPhoneNo;
+		sAddr = new char[15];
+		cout<<"Enter Address: ";
+		cin.ignore();
+		gets(sAddr);
+		sClass = new char[2];
+		cout<<"Enter class: ";
+		cin>>sClass;
+		sBloodGrp = new char[2];
+		cout<<"Enter Blood group: ";
+		cin>>sBloodGrp;
+		cout<<"Enter D.O.B (DD/MM/YY): ";
+		cin>>DOB.DD>>DOB.MM>>DOB.YY;
+		vDisplayData();
+		iNoOfStudents++;
+
+}
+int Student::iGetCount()
+{
+	return iNoOfStudents;
+}
+/*int iSearch(char *name, int roll, Student *list)
+{
+	for(int i=0; i<iNoOfStudents; i++)
+		{
+			if(strcmp(name,list[i].sName)==0&& roll ==list[i].iRoll)
+				return i;
+		}
+	return -1;
+}*/
+void Student::vDisplayData()
+{
+	cout<<"------------------------------------------------\n";
+	cout<<"Name: "<<sName<<endl;
+	cout<<"Address: "<<sAddr<<endl;
+	cout<<"Roll no.: "<<iRoll<<endl;
+	cout<<"Phone no.: "<<iPhoneNo<<endl;
+	cout<<"Class: "<<sClass<<endl;
+	cout<<"Blood Group: "<<sBloodGrp<<endl;
+	cout<<"D.O.B: "<<DOB.DD<<"/"<<DOB.MM<<"/"<<DOB.YY<<endl;
+	cout<<"------------------------------------------------\n";
+}
+
+Student::~Student() {
+	delete sName;
+	delete sAddr;
+	delete sClass;
+	delete sBloodGrp;
+}
+
