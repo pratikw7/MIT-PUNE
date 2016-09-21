@@ -233,4 +233,163 @@ int main()
 	}while(inp=='y');
 	return 0;
 }
+//------------OUTPUT--------------
+/*
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+2
+---------------------
+Empty list
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
+3
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
+-2
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
+1
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
+-5
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+2
+---------------------
+3
+-2
+1
+-5
+---------------------
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+3
+---------------------
+3
+1
+---------------------
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
+-4
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
+-7
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+2
+---------------------
+3
+1
+-4
+-7
+---------------------
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+4
+Positive list is:
+---------------------
+3
+1
+---------------------
+Negative list is:
+---------------------
+-4
+-7
+---------------------
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+5
+Enter the number of elements in the first list: 3
+Enter value:
+1
+Enter value:
+-3
+Enter value:
+2
+Enter the number of elements in the second list: 2
+Enter value:
+-4
+Enter value:
+5
+Sorted list is: 
+---------------------
+-3
+1
+2
+---------------------
+Sorted list is: 
+---------------------
+-4
+5
+---------------------
+Merged list is:
+---------------------
+-4
+-3
+1
+2
+5
+---------------------
+Do you want to continue?(y)n
 
+
+/*
