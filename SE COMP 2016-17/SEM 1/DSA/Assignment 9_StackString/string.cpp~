@@ -1,0 +1,18 @@
+/*
+ * string.cpp
+ *
+ *  *  Ashwin Vaidya
+ *  202030
+ */
+
+#include "string.h"
+
+String::String() {
+	//cStr = " ";
+
+}
+
+String::~String() {
+
+}
+

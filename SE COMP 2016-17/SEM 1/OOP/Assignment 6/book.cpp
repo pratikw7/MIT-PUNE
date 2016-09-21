@@ -34,31 +34,18 @@ void Book::getData()
 		cout<<"Error handled\n";
 		return;
 	}
-	cout<<"Enter title of book:\n";
-	cin.ignore();
-	cin>>title;
-	cout<<"Enter the price of book:\n";
-	cin>>price;
-	try{
-	if(price==0)
-		{
-					cout<<"Error occurred\n";
-					throw(1);
-		}
-		}
-		catch (int i)
-		{
-			pageCount =0;
-				price = 0;
-				title = "";
-			cout<<"Error handled\n";
-			return;
-		}
+	
+	if(Publication::getData())
+	{
+		pageCount =0;
+		return;
+	}
 }
 
 void Book::showData()
 {
-	cout<<"\t"<<title<<"\t\t"<<price<<"\t\t"<<pageCount<<"\tType: Book\n";
+	Publication::showData();
+	cout<<pageCount<<"\tType: Book\n";
 }
 
 Book::~Book() {

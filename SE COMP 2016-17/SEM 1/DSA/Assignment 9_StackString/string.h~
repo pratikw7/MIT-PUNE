@@ -1,0 +1,21 @@
+/*
+ * string.h
+ *
+ *   *  Ashwin Vaidya
+ *  202030
+ */
+
+#ifndef STRING_H_
+#define STRING_H_
+
+class String {
+char cStr[25];
+public:
+	String();
+	void vReverse();
+	bool isPalindrome();
+	void vRemove();
+	~String();
+};
+
+#endif /* STRING_H_ */

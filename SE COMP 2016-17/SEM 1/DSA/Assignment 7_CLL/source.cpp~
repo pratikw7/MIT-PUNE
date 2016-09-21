@@ -1,3 +1,6 @@
+//------------------S1-----------------
+//----------------Ashwin Vaidya--------
+//-----------------202030--------------
 #include <iostream>
 using namespace std;
 
@@ -46,6 +49,48 @@ void CLL::vInsertElement()
 }
 void CLL::vMergeList(CLL l1, CLL l2)
 {
+	head;
+	
+	Node *curr = new Node;
+	head = curr;
+	curr->next= head;
+	Node *temp1 = l1.head->next, *temp2 = l2.head->next;
+	while(temp1!=l1.head && temp2!=l2.head)
+    {
+        if(temp2->data>temp1->data)
+        {
+ 	curr->next = new Node;
+            curr = curr->next;
+            curr->data=temp1->data;
+            temp1=temp1->next;
+        }
+        else
+        {
+	curr->next = new Node;
+            curr = curr->next;
+            curr->data=temp2->data;
+            temp2=temp2->next;
+        }
+    }
+    
+    while(temp1!=l1.head)
+    {
+curr->next = new Node;
+        curr= curr->next;
+        curr->data=temp1->data;
+        temp1 = temp1->next;
+	
+    }
+    while(temp2!=l2.head)
+    {
+curr->next = new Node;
+        curr= curr->next;
+        curr->data=temp2->data;
+        temp2 = temp2->next;
+	
+    }
+	curr->next = head;
+	
 
 }
 
@@ -78,6 +123,7 @@ void CLL::vSortList()
 }
 void CLL::vDisplayList()
 {
+cout<<"---------------------\n";
 	if(head->next == head)
 	{
 		cout<<"Empty list\n";
@@ -88,6 +134,7 @@ void CLL::vDisplayList()
 		cout<<curr->data<<endl;
 		curr = curr->next;
 	}
+cout<<"---------------------\n";
 }
 void CLL::vDeleteNegNos()
 {
@@ -148,6 +195,7 @@ int main()
 			cL1.vInsertElement();
 			break;
 		case '2':
+
 			cL1.vDisplayList();
 			break;
 		case '3':
@@ -175,7 +223,9 @@ int main()
 			}
 			cRandomList1.vSortList();
 			cRandomList2.vSortList();
-			//cResultant.vMergeList(cRandomList1, cRandomList2);
+			cResultant.vMergeList(cRandomList1, cRandomList2);
+			cout<<"Merged list is:\n";
+			cResultant.vDisplayList();
 			break;
 		}
 		cout<<"Do you want to continue?(y)";

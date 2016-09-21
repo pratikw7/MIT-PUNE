@@ -1,0 +1,18 @@
+/*
+ * stack.cpp
+ *
+ *  *  Ashwin Vaidya
+ *  202030
+ */
+
+#include "stack.h"
+
+Stack::Stack() {
+	top = -1;
+
+}
+
+Stack::~Stack() {
+
+}
+
