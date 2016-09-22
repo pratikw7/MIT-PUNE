@@ -25,48 +25,58 @@ void vDisplayList();
 void cDLL::vMerge(cDLL D1, cDLL D2)
 {
 sNode *curr = new sNode;
+//head = new sNode;
 	head = curr;
-	curr->nNext= head;
+	curr->nNext= NULL;
+	curr->nPrev = NULL;
 	sNode *temp1 = D1.head->nNext, *temp2 = D2.head->nNext;
-	while(temp1!=D1.head && temp2!=D2.head)
+	while(temp1!=NULL && temp2!=NULL)
     {
         if(temp2->data>temp1->data)
         {
  	curr->nNext = new sNode;
+	sNode *tempCur = curr;
             curr = curr->nNext;
             curr->data=temp1->data;
-	    temp1->nPrev = curr;
-            curr=curr->nNext;
+	    curr->nPrev = tempCur;
+            curr->nNext = NULL;
+	temp1 = temp1->nNext;
         }
         else
         {
-	curr->nNext = new sNode;
+	 curr->nNext = new sNode;
+	sNode *tempCur = curr;
             curr = curr->nNext;
             curr->data=temp2->data;
-	    temp2->nPrev = curr;
-            temp2=temp2->nNext;
+	    curr->nPrev = tempCur;
+            curr->nNext = NULL;
+	temp2 = temp2->nNext;
         }
     }
     
-    while(temp1!=D1.head)
+    while(temp1!=NULL)
     {
+      
 curr->nNext = new sNode;
-        curr= curr->nNext;
-        curr->data=temp1->data;
-	temp1->nPrev = curr;
-        temp1 = temp1->nNext;
+	sNode *tempCur = curr;
+            curr = curr->nNext;
+            curr->data=temp1->data;
+	    curr->nPrev = tempCur;
+            curr->nNext = NULL;
+	 temp1 = temp1->nNext;
 	
     }
-    while(temp2!=D2.head)
+    while(temp2!=NULL)
     {
 curr->nNext = new sNode;
-        curr= curr->nNext;
-        curr->data=temp2->data;
-	temp2->nPrev = curr;
-        temp2 = temp2->nNext;
+	sNode *tempCur = curr;
+            curr = curr->nNext;
+            curr->data=temp2->data;
+	    curr->nPrev = tempCur;
+            curr->nNext = NULL;
+	 temp2 = temp2->nNext;
 	
     }
-	curr->nNext = head;
 }
 void cDLL::vCreateList()
 {
@@ -119,13 +129,62 @@ void cDLL::vDisplayList()
 int main()
 {
 	cDLL l1,l2,l3;
-	cout<<"Enter +ve numbers:\n";
+	cout<<"Enter first list:\n";
 	l1.vCreateList();
 	l1.vDisplayList();
-	cout<<"Enter -ve numbers:\n";
+	cout<<"Enter second list:\n";
 	l2.vCreateList();
 	l2.vDisplayList();
 	l3.vMerge(l1,l2);
+	cout<<"Merged list is\n";
 	l3.vDisplayList();
 	return 0;
 }
+//----------------OUTPUT----------------------
+/*
+Enter first list:
+Enter value:-2
+Do you want to continue adding?(y)y
+Enter value:0
+Do you want to continue adding?(y)y
+Enter value:3
+Do you want to continue adding?(y)n
+---------------------
+-2
+---------------------
+0
+---------------------
+3
+Enter second list:
+Enter value:-3
+Do you want to continue adding?(y)y
+Enter value:-1
+Do you want to continue adding?(y)y
+Enter value:1
+Do you want to continue adding?(y)y
+Enter value:5
+Do you want to continue adding?(y)n
+---------------------
+-3
+---------------------
+-1
+---------------------
+1
+---------------------
+5
+Merged list is
+---------------------
+-3
+---------------------
+-2
+---------------------
+-1
+---------------------
+0
+---------------------
+1
+---------------------
+3
+---------------------
+5
+*/
