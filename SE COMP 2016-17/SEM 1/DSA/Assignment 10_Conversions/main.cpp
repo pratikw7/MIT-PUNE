@@ -9,17 +9,20 @@
 //f.Postfix to prefix
 #include <iostream>
 #include <cstdio>
+#include <string.h>
 using namespace std;
+
 class Stack1D {
 char cStack[50];
 int top;
 public:
-	void vPush(char elem);
+	void vPush(char);
 	char cPop();
-	bool isEmpty();
-	bool isFull();
+	bool bIsEmpty();
+	bool bIsFull();
 	Stack1D();
 	virtual ~Stack1D();
+	friend class Convert;
 };
 
 Stack1D::Stack1D() {
@@ -29,7 +32,7 @@ Stack1D::Stack1D() {
 
 void Stack1D::vPush(char elem)
 {
-	if(!isFull())
+	if(!bIsFull())
 	{
 		top++;
 		cStack[top] = elem;
@@ -41,7 +44,7 @@ void Stack1D::vPush(char elem)
 char Stack1D::cPop()
 {
 	char ret = '\0';
-	if(!isEmpty())
+	if(!bIsEmpty())
 	{
 		ret = cStack[top];
 		top--;
@@ -50,13 +53,13 @@ char Stack1D::cPop()
 		cout<<"Underflow!\n";
 	return ret;
 }
-inline bool Stack1D::isEmpty()
+inline bool Stack1D::bIsEmpty()
 {
 	if(top==-1)
 		return true;
 	return false;
 }
-inline bool Stack1D::isFull()
+inline bool Stack1D::bIsFull()
 {
 	if(top >=49)
 		return true;
@@ -66,19 +69,59 @@ inline bool Stack1D::isFull()
 Stack1D::~Stack1D() {
 
 }
-
 class Stack2D
 {
 	char cStack[20][20];
 	int top;
 public:
-	void vPush(char *elem);
-	char* cPop();
+  void vPush(string &elem);
+	string cPop();
 	bool bIsEmpty();
 	bool bIsFull();
 	Stack2D();
 	virtual ~Stack2D();
+	friend class Convert;
 };
+
+bool Stack2D::bIsEmpty()
+{
+    if (top<0)
+        return true;
+    else
+        return false;
+}
+bool Stack2D::bIsFull()
+{
+    if (top>=20)
+        return true;
+    else
+        return false;
+}
+
+void Stack2D::vPush(string &elem)
+{
+    if(!bIsFull())
+    {
+        top++;
+        elem.copy(cStack[top],20);
+    }
+    else
+        cout<<"Overflow!\n";
+
+}
+string Stack2D::cPop()
+    {
+    if(!bIsEmpty())
+		{
+			string temp;
+			temp = cStack[top];
+			return temp;
+		}
+		else
+			cout<<"Underflow\n";
+
+		return '\0';
+    }
 Stack2D::Stack2D()
 {
 	top = -1;
@@ -95,9 +138,20 @@ class Convert
 public:
 	void vInfixPostfix(Convert &cExp);
 	void vInfixPrefix(Convert &cExp);
-	void vPrefixPostfix(Convert &cExp);
 	void vPostfixInfix(Convert &cExp);
-	void vPostfixPrefix(Convert &cExp);
+	void vPrefixInfix(Convert &cExp);
+  void vPostfixPrefix(Convert &cExp);
+	void vPrefixPostfix(Convert &cExp);
+void vGetData()
+{
+	cout<<"Enter Expression in standard form :";
+	cin>>cExpr;
+}
+void vDisplayData()
+{
+	cout<<cExpr<<endl;
+}
+		void vReverse();
 	int iPriority(char c)
 	{
 		if(c=='^')
@@ -114,33 +168,251 @@ public:
 
 void Convert::vInfixPostfix(Convert &cExp)
 {
-	cout<<"Enter a Infix expression: ";
-	gets(cExpr);
+	Stack1D s1 ;
+  int k=0,i=0;
+  char tkn ;
+
+  tkn=cExp.cExpr[i];
+
+  while(tkn!='\0'){
+      if(((tkn >= 'a') && (tkn <= 'z') )|| ((tkn >= 'A') && (tkn <= 'Z')) )
+
+      {
+     	 cExpr[k]=cExp.cExpr[i];
+          k++ ;
+      }
+      else{
+            if(tkn=='(')
+              s1.vPush('(');
+            else {
+              if(tkn==')')
+             {
+							 while((tkn=s1.cPop())!='('){
+                    cExpr[k]=tkn ;k++ ;
+                }
+             }
+               else {
+                      while((!s1.bIsEmpty()) && (iPriority(s1.cStack[s1.top])>=iPriority(tkn) )){
+                       cExpr[k]=s1.cPop();
+                       k++ ;
+                        }
+                           s1.vPush(tkn);
+                    }
+           }
+    }
+         i++ ;
+         tkn=cExp.cExpr[i];
+  }
+
+  while(!s1.bIsEmpty()){
+
+ 	 cExpr[k]=s1.cPop();
+ 	 k++ ;
+
+  }
+ cExpr[k]='\0';
+
+
+
 }
 void Convert::vInfixPrefix(Convert &cExp)
 {
-	cout<<"Enter a Infix expression: ";
-	gets(cExpr);
+	Stack1D s2 ;
+	int k=0,i=0;
+	char tkn ;
+	cExp.vReverse();
+	tkn=cExp.cExpr[i];
+
+	while(tkn!='\0'){
+	          if(tkn!='^' && tkn!='*' && tkn!='/' && tkn!='+' && tkn!='-' && tkn!='(' && tkn!=')')
+	          {
+	                  cExpr[k]=cExp.cExpr[i];
+	                  k++ ;
+	          }
+	         else{
+	                if(tkn==')')
+	                { s2.vPush(')');}
+	              else {
+
+	                    if(tkn=='(')
+	                    {
+	                          while((tkn=s2.cPop())!=')'){
+	                               cExpr[k]=tkn ;k++ ;
+	                    }
+	                  }
+	                    else {
+	                            while((!s2.bIsEmpty()) && (iPriority(s2.cStack[s2.top])>iPriority(tkn) )){
+	                               cExpr[k]=s2.cPop();
+	                               k++ ;
+	                            }
+	                          s2.vPush(tkn);
+	                   }
+	             }
+	      }
+	    i++ ;
+	    tkn=cExp.cExpr[i];
+	}
+	while(!s2.bIsEmpty()){
+	    cExpr[k]=s2.cPop();
+	    k++ ;
+	}
+	vReverse();
 }
 void Convert::vPrefixPostfix(Convert &cExp)
 {
-	cout<<"Enter a Prefix expression: ";
-	gets(cExpr);
+		cExp.vReverse();
+			Stack2D s ;
+				 int i=0;
+				 string p1,p2,p3 ;
+				 char tkn=cExp.cExpr[i];
+				 while(tkn!='\0'){
+				     if(((tkn >= 'a') && (tkn <= 'z') )|| ((tkn >= 'A') && (tkn <= 'Z')) )
+				     {
+				    	  p1=tkn;
+				    	  s.vPush(p1);
+				     }
+				     else{
+
+				    	 if(s.top<1)
+				    		 cout<<"Error! Not enough Input Values!\n"<<endl;
+				    	 else{
+				    		 p1=s.cPop();
+				    		 p2=s.cPop();
+				    		 p3=p1+p2+tkn ;
+				    		 s.vPush(p3);
+				    	 }
+
+				     }
+        					tkn=cExp.cExpr[++i];
+			            strcpy(cExpr,s.cStack[s.top]);
+
+				 }
+	tkn=cExp.cExpr[i] ;
+				 while(tkn!='\0'){
+					 p1=s.cPop();
+					 p3=p3+tkn;
+					 s.vPush(p3);
+					 i++ ;
+					 tkn=cExp.cExpr[i] ;
+					 strcpy(cExpr,s.cStack[s.top]);
+				 }
+}
+void Convert::vPrefixInfix(Convert &cExp)
+{
+	cExp.vReverse();
+	Stack2D s ;
+		 int i=0;
+		 string p1,p2,p3 ;
+		 char tkn=cExp.cExpr[i];
+		 while(tkn!='\0'){
+		     if(((tkn >= 'a') && (tkn <= 'z') )|| ((tkn >= 'A') && (tkn <= 'Z')) )
+		     {
+		    	  p1=tkn;
+		    	  s.vPush(p1);
+		     }
+		     else{
+		    	 if(s.top<1)
+		    		 cout<<"Error! Not enough Input Values!\n"<<endl;
+		    	 else{
+		    		 p1=s.cPop();
+		    		 p2=s.cPop();
+		    		 p3="("+p1+tkn+p2+")" ;
+		    		 s.vPush(p3);
+		    	 }
+		     }
+	            tkn=cExp.cExpr[++i];
+	            strcpy(cExpr,s.cStack[s.top]);
+		 }
 }
 void Convert::vPostfixInfix(Convert &cExp)
 {
-	cout<<"Enter a Postfix expression: ";
-	gets(cExpr);
-}
-void Convert::vPostfixPrefix(Convert &cExp)
-{
-	cout<<"Enter a Postfix expression: ";
-	gets(cExpr);
+	Stack2D s ;
+	int i=0;
+	string p1,p2,p3 ;
+	char tkn=cExp.cExpr[i];
+	while(tkn!='\0'){
+			if(((tkn >= 'a') && (tkn <= 'z') )|| ((tkn >= 'A') && (tkn <= 'Z')) )
+			{
+				 p1=tkn;
+				 s.vPush(p1);
+			}
+			else{
+				if(s.top<1)
+					cout<<"Error! Not enough Input Values!\n"<<endl;
+				else{
+					p1=s.cPop();
+					p2=s.cPop();
+					p3="("+p2+tkn+p1+")" ;
+					s.vPush(p3);
+				}
+			}
+					 tkn=cExp.cExpr[++i];
+					 strcpy(cExpr,s.cStack[s.top]);
+	}
 }
 
+void Convert::vPostfixPrefix(Convert &cExp)
+{
+	Stack2D s ;
+ 	 int i=0;
+ 	 string p1,p2,p3 ;
+ 	 char tkn=cExp.cExpr[i];
+
+ 	 while(tkn!='\0'){
+ 			 if(((tkn >= 'a') && (tkn <= 'z') )|| ((tkn >= 'A') && (tkn <= 'Z')) )
+ 			 {
+ 					p1=tkn;
+ 					s.vPush(p1);
+ 					cout<<p1<<"  "<<endl;
+ 			 }
+
+ 			 else{
+
+ 				 if(s.top<1)
+ 					 cout<<"Error! Not enough Input Values!\n"<<endl;
+ 				 else
+
+ 				 {
+ 					 p1=s.cPop();
+ 					 p2=s.cPop();
+ 					 p3=tkn+p2+p1 ;
+ 					 s.vPush(p3);
+ 				 }
+
+ 			 }
+ 						tkn=cExp.cExpr[++i];
+ 						strcpy(cExpr,s.cStack[s.top]);
+ 	 }
+ while(!s.bIsEmpty() && s.top>0){
+ 										 p1=s.cPop();
+ 						 p2=s.cPop();
+ 						 p3=p2+p1 ;
+ 						 s.vPush(p3);
+ 						 tkn=cExp.cExpr[++i];
+ 						 strcpy(cExpr	,s.cStack[s.top]);
+ }
+}
+void Convert::vReverse()
+{
+	Stack1D t1 ;
+  int i=0;
+
+  while(cExpr[i]!='\0'){
+      t1.vPush(cExpr[i]);
+    i++ ;
+  }
+   i=0;
+  do{
+    cExpr[i]=t1.cPop();
+       i++ ;
+
+  }while(!t1.bIsEmpty());
+  cExpr[i]='\0';
+}
 
 int main()
 {
+    Convert g1, c1;
 	char inp;
 	do
 	{
@@ -154,21 +426,49 @@ int main()
 		switch(inp)
 		{
 		case '1':
+		g1.vGetData();
+		c1.vInfixPostfix(g1);
+		cout<<"Expression in Post-fix form : ";
+		c1.vDisplayData();
 			break;
 		case '2':
+			g1.vGetData();
+			c1.vInfixPrefix(g1);
+			cout<<"Expression in Prefix form : ";
+			c1.vDisplayData();
 			break;
 		case '3':
-				break;
+		g1.vGetData();
+		c1.vPrefixPostfix(g1);
+		cout<<"Expression in Post-fix form : ";
+		c1.vDisplayData();
+		break;
+
 		case '4':
-				break;
+		g1.vGetData();
+		c1.vPrefixInfix(g1);
+		cout<<"Expression in Infix form : ";
+		c1.vDisplayData();
+		break;
+
 		case '5':
-				break;
+		g1.vGetData();
+		c1.vPostfixInfix(g1);
+		cout<<"Expression in Infix form : ";
+		c1.vDisplayData();
+		break;
+
 		case '6':
-				break;
+		g1.vGetData();
+		c1.vPostfixPrefix(g1);
+		cout<<"Expression in Prefix form : ";
+		c1.vDisplayData();
+			break;
 		}
 		cout<<"Do you want to continue?(y)";
 		cin>>inp;
 	}while(inp=='y');
 	return 0;
 }
-
+/*
+*/
