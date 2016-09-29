@@ -137,5 +137,23 @@ Do you want to continue?(y)y
 Chrome
 -----------------------
 Do you want to continue?(y)n
+1. Add job
+2. Delete job
+3. Display queue
+1
+Enter name of job
+Chrome
+Do you want to continue?(y)y
+1. Add job
+2. Delete job
+3. Display queue
+2
+Do you want to continue?(y)y
+1. Add job
+2. Delete job
+3. Display queue
+2
+The queue is empty! UNDERFLOW !
+
  *
  */

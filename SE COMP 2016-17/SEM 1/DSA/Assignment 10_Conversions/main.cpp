@@ -12,7 +12,7 @@
 #include <string.h>
 using namespace std;
 
-class Stack1D {
+class Stack1D {      //1 dimentional stack
 char cStack[50];
 int top;
 public:
@@ -43,7 +43,7 @@ void Stack1D::vPush(char elem)
 }
 char Stack1D::cPop()
 {
-	char ret = '\0';
+	char ret = ' ';
 	if(!bIsEmpty())
 	{
 		ret = cStack[top];
@@ -69,7 +69,7 @@ inline bool Stack1D::bIsFull()
 Stack1D::~Stack1D() {
 
 }
-class Stack2D
+class Stack2D			//2 dimentional stack
 {
 	char cStack[20][20];
 	int top;
@@ -111,16 +111,17 @@ void Stack2D::vPush(string &elem)
 }
 string Stack2D::cPop()
     {
-    if(!bIsEmpty())
+    if(!bIsEmpty())				//Check empty condition
 		{
 			string temp;
 			temp = cStack[top];
+			top--;
 			return temp;
 		}
 		else
 			cout<<"Underflow\n";
 
-		return '\0';
+		return " ";
     }
 Stack2D::Stack2D()
 {
@@ -136,12 +137,12 @@ class Convert
 {
 	char cExpr[50];
 public:
-	void vInfixPostfix(Convert &cExp);
-	void vInfixPrefix(Convert &cExp);
-	void vPostfixInfix(Convert &cExp);
-	void vPrefixInfix(Convert &cExp);
-  void vPostfixPrefix(Convert &cExp);
-	void vPrefixPostfix(Convert &cExp);
+	void vInfixPostfix(Convert &cExp); //Infix to postfix
+	void vInfixPrefix(Convert &cExp);  //Infix to prefix
+	void vPostfixInfix(Convert &cExp); //Postfix to infix
+	void vPrefixInfix(Convert &cExp);  //Prefix to infix
+  void vPostfixPrefix(Convert &cExp);	   //Postfix to prefix
+	void vPrefixPostfix(Convert &cExp);//Prefix to postfix
 void vGetData()
 {
 	cout<<"Enter Expression in standard form :";
@@ -160,7 +161,7 @@ void vDisplayData()
 			return 3;
 		else if(c=='+'||c=='-')
 			return 2;
-		else if(c=='('||c==')')
+		else if(c=='(')
 			return 1;
 		return 0;
 	}
@@ -273,7 +274,7 @@ void Convert::vPrefixPostfix(Convert &cExp)
 				     }
 				     else{
 
-				    	 if(s.top<1)
+				    	 if(s.top<1)					//Check for errors
 				    		 cout<<"Error! Not enough Input Values!\n"<<endl;
 				    	 else{
 				    		 p1=s.cPop();
@@ -311,7 +312,7 @@ void Convert::vPrefixInfix(Convert &cExp)
 		    	  s.vPush(p1);
 		     }
 		     else{
-		    	 if(s.top<1)
+		    	 if(s.top<1)						//Check for errors
 		    		 cout<<"Error! Not enough Input Values!\n"<<endl;
 		    	 else{
 		    		 p1=s.cPop();
@@ -337,7 +338,7 @@ void Convert::vPostfixInfix(Convert &cExp)
 				 s.vPush(p1);
 			}
 			else{
-				if(s.top<1)
+				if(s.top<1)					//Check for errors
 					cout<<"Error! Not enough Input Values!\n"<<endl;
 				else{
 					p1=s.cPop();
@@ -368,7 +369,7 @@ void Convert::vPostfixPrefix(Convert &cExp)
 
  			 else{
 
- 				 if(s.top<1)
+ 				 if(s.top<1)			//Check for errors
  					 cout<<"Error! Not enough Input Values!\n"<<endl;
  				 else
 
@@ -412,16 +413,16 @@ void Convert::vReverse()
 
 int main()
 {
-    Convert g1, c1;
+    Convert g1, c1;			//Two objects, one to store original other to store result
 	char inp;
 	do
 	{
 		cout<<"1. Infix to Postfix\n";
 		cout<<"2. Infix to Prefix\n";
-		cout<<"3. Prefix to Postfix\n";
+		cout<<"3. Postfix to Infix\n";
 		cout<<"4. Prefix to Infix\n";
-		cout<<"5. Postfix to Infix\n";
-		cout<<"6. Postfix to Prefix\n";
+		cout<<"5. Postfix to Prefix\n";
+		cout<<"6. Prefix to Postfix\n";
 		cin>>inp;
 		switch(inp)
 		{
@@ -439,7 +440,7 @@ int main()
 			break;
 		case '3':
 		g1.vGetData();
-		c1.vPrefixPostfix(g1);
+		c1.vPostfixInfix(g1);
 		cout<<"Expression in Post-fix form : ";
 		c1.vDisplayData();
 		break;
@@ -453,14 +454,14 @@ int main()
 
 		case '5':
 		g1.vGetData();
-		c1.vPostfixInfix(g1);
+		c1.vPostfixPrefix(g1);
 		cout<<"Expression in Infix form : ";
 		c1.vDisplayData();
 		break;
 
 		case '6':
 		g1.vGetData();
-		c1.vPostfixPrefix(g1);
+		c1.vPrefixPostfix(g1);
 		cout<<"Expression in Prefix form : ";
 		c1.vDisplayData();
 			break;
@@ -470,5 +471,69 @@ int main()
 	}while(inp=='y');
 	return 0;
 }
-/*
+/*-------------OUTPUT---------------------
+1. Infix to Postfix
+2. Infix to Prefix
+3. Postfix to Infix
+4. Prefix to Infix
+5. Postfix to Prefix
+6. Prefix to Postfix
+1
+Enter Expression in standard form :(a+b)*c
+Expression in Post-fix form : ab+c*
+Do you want to continue?(y)y
+1. Infix to Postfix
+2. Infix to Prefix
+3. Postfix to Infix
+4. Prefix to Infix
+5. Postfix to Prefix
+6. Prefix to Postfix
+2
+Enter Expression in standard form :(a+b)*c
+Expression in Prefix form : *+abc
+Do you want to continue?(y)y
+1. Infix to Postfix
+2. Infix to Prefix
+3. Postfix to Infix
+4. Prefix to Infix
+5. Postfix to Prefix
+6. Prefix to Postfix
+3
+Enter Expression in standard form :ab+c*
+Expression in Post-fix form : ((a+b)*c)
+Do you want to continue?(y)y
+1. Infix to Postfix
+2. Infix to Prefix
+3. Postfix to Infix
+4. Prefix to Infix
+5. Postfix to Prefix
+6. Prefix to Postfix
+4
+Enter Expression in standard form :*+abc
+Expression in Infix form : ((a+b)*c)
+Do you want to continue?(y)y
+1. Infix to Postfix
+2. Infix to Prefix
+3. Postfix to Infix
+4. Prefix to Infix
+5. Postfix to Prefix
+6. Prefix to Postfix
+5
+Enter Expression in standard form :ab+c*   
+a  
+b  
+c  
+Expression in Infix form : *+abc
+Do you want to continue?(y)y
+1. Infix to Postfix
+2. Infix to Prefix
+3. Postfix to Infix
+4. Prefix to Infix
+5. Postfix to Prefix
+6. Prefix to Postfix
+6
+Enter Expression in standard form :*+abc
+Expression in Prefix form : ab+c*
+Do you want to continue?(y)n
+
 */

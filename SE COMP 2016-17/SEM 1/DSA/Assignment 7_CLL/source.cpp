@@ -131,7 +131,7 @@ cout<<"---------------------\n";
 	}
 	Node *curr = head->next;
 	while(curr!= head){
-		cout<<curr->data<<endl;
+		cout<<curr->data<<"\tNext: "<<curr->next<<endl;
 		curr = curr->next;
 	}
 cout<<"---------------------\n";
@@ -240,18 +240,9 @@ int main()
 3. Delete negative numbers from list
 4. Split into -ve and +ve number's lists
 5. Sort and merge two lists
-2
----------------------
-Empty list
-Do you want to continue?(y)y
-1. Add element to list
-2. Display the list
-3. Delete negative numbers from list
-4. Split into -ve and +ve number's lists
-5. Sort and merge two lists
 1
 Enter value:
-3
+5
 Do you want to continue?(y)y
 1. Add element to list
 2. Display the list
@@ -276,64 +267,41 @@ Do you want to continue?(y)y
 3. Delete negative numbers from list
 4. Split into -ve and +ve number's lists
 5. Sort and merge two lists
-1
-Enter value:
--5
+2
+---------------------
+5	Next: 0xa250f0
+-2	Next: 0xa25110
+1	Next: 0xa25010
+---------------------
 Do you want to continue?(y)y
 1. Add element to list
 2. Display the list
 3. Delete negative numbers from list
 4. Split into -ve and +ve number's lists
 5. Sort and merge two lists
-2
----------------------
 3
+---------------------
+5	Next: 0xa25110
+1	Next: 0xa25010
+---------------------
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
+-4
+Do you want to continue?(y)y
+1. Add element to list
+2. Display the list
+3. Delete negative numbers from list
+4. Split into -ve and +ve number's lists
+5. Sort and merge two lists
+1
+Enter value:
 -2
-1
--5
----------------------
-Do you want to continue?(y)y
-1. Add element to list
-2. Display the list
-3. Delete negative numbers from list
-4. Split into -ve and +ve number's lists
-5. Sort and merge two lists
-3
----------------------
-3
-1
----------------------
-Do you want to continue?(y)y
-1. Add element to list
-2. Display the list
-3. Delete negative numbers from list
-4. Split into -ve and +ve number's lists
-5. Sort and merge two lists
-1
-Enter value:
--4
-Do you want to continue?(y)y
-1. Add element to list
-2. Display the list
-3. Delete negative numbers from list
-4. Split into -ve and +ve number's lists
-5. Sort and merge two lists
-1
-Enter value:
--7
-Do you want to continue?(y)y
-1. Add element to list
-2. Display the list
-3. Delete negative numbers from list
-4. Split into -ve and +ve number's lists
-5. Sort and merge two lists
-2
----------------------
-3
-1
--4
--7
----------------------
 Do you want to continue?(y)y
 1. Add element to list
 2. Display the list
@@ -343,13 +311,13 @@ Do you want to continue?(y)y
 4
 Positive list is:
 ---------------------
-3
-1
+5	Next: 0xa25170
+1	Next: 0xa25030
 ---------------------
 Negative list is:
 ---------------------
--4
--7
+-4	Next: 0xa251b0
+-2	Next: 0xa25050
 ---------------------
 Do you want to continue?(y)y
 1. Add element to list
@@ -358,38 +326,38 @@ Do you want to continue?(y)y
 4. Split into -ve and +ve number's lists
 5. Sort and merge two lists
 5
-Enter the number of elements in the first list: 3
+Enter the number of elements in the first list: 2
+Enter value:
+-2
 Enter value:
 1
+Enter the number of elements in the second list: 3
+Enter value:
+4
 Enter value:
 -3
-Enter value:
-2
-Enter the number of elements in the second list: 2
-Enter value:
--4
 Enter value:
 5
 Sorted list is: 
 ---------------------
--3
-1
-2
+-2	Next: 0x10e20f0
+1	Next: 0x10e2070
 ---------------------
 Sorted list is: 
 ---------------------
--4
-5
+-3	Next: 0x10e2130
+4	Next: 0x10e2150
+5	Next: 0x10e2090
 ---------------------
 Merged list is:
 ---------------------
--4
--3
-1
-2
-5
+-3	Next: 0x10e21b0
+-2	Next: 0x10e21d0
+1	Next: 0x10e21f0
+4	Next: 0x10e2210
+5	Next: 0x10e2170
 ---------------------
 Do you want to continue?(y)n
 
 
-/*
+*/

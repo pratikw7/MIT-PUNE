@@ -121,7 +121,7 @@ void cDLL::vDisplayList()
 	while(temp!= NULL)
 	{
 		cout<<"---------------------\n";
-		cout<<temp->data<<endl;
+		cout<<temp->data<<" Next: "<<temp->nNext<<" Previous: "<<temp->nPrev<<endl;
 		temp = temp->nNext;
 	}
 }
@@ -143,48 +143,43 @@ int main()
 //----------------OUTPUT----------------------
 /*
 Enter first list:
+Enter value:-3
+Do you want to continue adding?(y)y
+Enter value:2
+Do you want to continue adding?(y)y
+Enter value:1
+Do you want to continue adding?(y)n
+---------------------
+-3 Next: 0xc6f050 Previous: 0xc6f010
+---------------------
+2 Next: 0xc6f070 Previous: 0xc6f030
+---------------------
+1 Next: 0 Previous: 0xc6f050
+Enter second list:
 Enter value:-2
 Do you want to continue adding?(y)y
 Enter value:0
 Do you want to continue adding?(y)y
-Enter value:3
+Enter value:-4
 Do you want to continue adding?(y)n
 ---------------------
--2
+-2 Next: 0xc6f0d0 Previous: 0xc6f090
 ---------------------
-0
+0 Next: 0xc6f0f0 Previous: 0xc6f0b0
 ---------------------
-3
-Enter second list:
-Enter value:-3
-Do you want to continue adding?(y)y
-Enter value:-1
-Do you want to continue adding?(y)y
-Enter value:1
-Do you want to continue adding?(y)y
-Enter value:5
-Do you want to continue adding?(y)n
----------------------
--3
----------------------
--1
----------------------
-1
----------------------
-5
+-4 Next: 0 Previous: 0xc6f0d0
 Merged list is
 ---------------------
--3
+-3 Next: 0xc6f150 Previous: 0xc6f110
 ---------------------
--2
+-2 Next: 0xc6f170 Previous: 0xc6f130
 ---------------------
--1
+0 Next: 0xc6f190 Previous: 0xc6f150
 ---------------------
-0
+-4 Next: 0xc6f1b0 Previous: 0xc6f170
 ---------------------
-1
+2 Next: 0xc6f1d0 Previous: 0xc6f190
 ---------------------
-3
----------------------
-5
+1 Next: 0 Previous: 0xc6f1b0
+
 */
