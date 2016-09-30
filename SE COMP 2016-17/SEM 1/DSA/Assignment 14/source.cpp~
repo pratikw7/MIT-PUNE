@@ -1,0 +1,95 @@
+//-----------------Ashwin Vaidya------------------
+//---------------------SE1------------------------
+//--------------------202030----------------------
+//Selection Sort
+//Bubble sort and top five
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class cSort
+{
+public:
+	void vBubbleSort(vector<float>);
+	void vSectionSort(vector<float>);
+};
+void cSort::vBubbleSort(vector<float> s)
+{
+	int flag =1;
+	  while(flag)
+	  {
+	  flag =0;
+	  for(int i=0; i<s.size()-1;i++)
+	  {
+	    if(s[i]>s[i+1])
+	      {
+	        int temp = s[i];
+	        s[i] = s[i+1];
+	        s[i] = temp;
+	        flag = 1;
+	      }
+	  }
+	  }
+	  cout<<"---------------Sorted list using bubble sort-------------------\n";
+	  for(int i=0; i<s.size(); i++)
+	  {
+		  cout<<s[i]<< " ";
+	  }
+	  cout<<endl;
+	  cout<<"--------------------Top 5 Percentages---------------\n";
+	  	for(int i=s.size()-5; i<s.size(); i++)
+	  			  {
+	  				  cout<<s[i]<< " ";
+	  			  }
+	  			  cout<<endl;
+}
+void cSort::vSectionSort(vector<float> s)
+{
+	int i,j,k,temp;
+	for(i=0;i<s.size()-1;i++)
+	{
+		k=i;
+		for (j=i+1;j<s.size();j++)
+			if(s[j]<s[k])
+				k=j;
+		if(k!=i)
+		{
+			temp=s[i];
+			s[i]=s[k];
+			s[k]=temp;
+		}
+	}
+	cout<<"---------------Sorted list using selection sort-------------------\n";
+		  for(int i=0; i<s.size(); i++)
+		  {
+			  cout<<s[i]<< " ";
+		  }
+		  cout<<endl;
+		  cout<<"--------------------Top 5 Percentages---------------\n";
+		  	for(int i=s.size()-5; i<s.size(); i++)
+		  			  {
+		  				  cout<<s[i]<< " ";
+		  			  }
+		  			  cout<<endl;
+}
+int main()
+{
+	vector<float> vfPer;
+	char c;
+	float input;
+	cSort sSort;
+	while(true)
+	{
+		cout<<"Enter percentage: ";
+		cin>>input;
+		vfPer.push_back(input);
+		cout<<"Do you want to continue?(y) ";
+		cin>>c;
+		if(c!='y')
+			break;
+	}
+	sSort.vBubbleSort(vfPer);
+	sSort.vSectionSort(vfPer);
+	return 0;
+}
+
