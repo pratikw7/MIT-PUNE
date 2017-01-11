@@ -1,0 +1,48 @@
+//------------Ashwin Vaidya-----------
+//----------------S1------------------
+//---------------202030---------------
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+class Record
+{
+	string sName;
+	unsigned int uiPhNO;
+public:
+	Record();
+	void vAddRecord();
+	void vSearch(int, Record);
+	void vSearch(string, Record);
+	void vUpdatePhNO();
+};
+
+Record::Record()
+{
+	sName = "\0";
+	uiPhNO = 0;
+}
+
+void Record::vAddRecord()
+{
+	cout<<"Enter Name of person";
+	getline(cin,sName);
+	cout<<"Enter phone number of person";
+	cin>>uiPhNO;
+}
+
+void Record::vSearch(int ph, Record rec)
+{
+
+}
+void Record::vSearch(string name, Record rec)
+{
+
+}
+
+int main()
+{
+	fstream
+	return 0;
+}
