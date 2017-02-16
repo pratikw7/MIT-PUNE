@@ -8,11 +8,15 @@ using namespace std;
 class cTreeNode
 {
 private:
+	cTreeNode();
 	cTreeNode *left, *right;
 	string sData;
 	friend class cTree;
 };
-
+cTreeNode::cTreeNode()
+{
+	left = right = NULL;
+}
 class cStack
 {
 	cTreeNode *NodeList[10];
@@ -66,6 +70,7 @@ class cTree
 public:
 	void operator=(cTree );
 	cTreeNode *nCopy(cTreeNode*);
+	void vCopy_nr(cTree &);
 	void vCreate_nr();
 	void vCreate_r();
 	void vCreate_r(cTreeNode *);
@@ -82,8 +87,41 @@ public:
 	cTree();
 	~cTree();
 };
+
+void cTree::vCopy_nr(cTree &other)
+{
+	root = new cTreeNode;
+	cTreeNode *temp = root;
+	cStack otherStack;
+	cTreeNode *otherTemp = other.root;
+		if(other.root == NULL)
+			root = NULL;
+		else{
+		while(1)
+		{
+			while(otherTemp!=NULL)
+			{
+				cSt.vPush(temp);
+				otherStack.vPush(otherTemp);
+				temp->left = new cTreeNode;
+				temp = temp->left;
+				otherTemp = otherTemp->left;
+			}
+			if(otherStack.bIsEmpty())
+				break;
+			temp = cSt.nPop();
+			otherTemp = otherStack.nPop();
+			temp->sData = otherTemp->sData;
+			temp->right = new cTreeNode;
+			temp= temp->right;
+			otherTemp= otherTemp->right;
+		}
+		}
+}
+
 cTree::~cTree()
 {
+	//cout<<"Destructor called!\n";
 	vEraseTree();
 }
 void cTree::vEraseTree()
@@ -114,7 +152,7 @@ void cTree::vEraseTree()
 			temp= cSt.NodeList[cSt.iTop]->right;
 		}
 		}
-		cout<<"Tree Deleted\n";
+
 		root = NULL;
 }
 void cTree::operator =(cTree t2)
@@ -181,7 +219,7 @@ void cTree::vPostorder_nr()
 			break;
 		temp= cSt.NodeList[cSt.iTop]->right;
 	}
-		}
+	}
 }
 void cTree::vInorder_nr()
 {
@@ -354,6 +392,7 @@ int main()
 {
 	cTree tTree,t2;
 	char n='y';
+	int input;
 	while(n=='y')
 	{
 		cout<<"0. Create tree using recursion\n";
@@ -364,44 +403,53 @@ int main()
 		cout<<"5. Non-Recursive Inorder\n";
 		cout<<"6. Non-Recursive Preorder\n";
 		cout<<"7. Non-Recursive Postorder\n";
-		cout<<"8. Copy current tree to another tree\n";
-		cout<<"9. Delete tree\n";
-		cin>>n;
-		switch(n)
+		cout<<"8. Recursive Copy current tree to another tree\n";
+		cout<<"9. Non-Recursive Copy current tree to another tree\n";
+		cout<<"10. Delete tree\n";
+		cin>>input;
+		switch(input)
 		{
-		case '0':
+		case 0:
 			tTree.vCreate_r();
 			break;
-		case '1':
+		case 1:
 			tTree.vCreate_nr();
 			break;
-		case '2':
+		case 2:
 			tTree.vInorder_r();
 			break;
-		case '3':
+		case 3:
 			tTree.vPreorder_r();
 			break;
-		case '4':
+		case 4:
 			tTree.vPostorder_r();
 			break;
-		case '5':
+		case 5:
 			tTree.vInorder_nr();
 			break;
-		case '6':
+		case 6:
 			tTree.vPreorder_nr();
 			break;
-		case '7':
+		case 7:
 			tTree.vPostorder_nr();
 			break;
-		case '8':
+		case 8:
 			cout<<"Current tree using Inorder: ";
 			tTree.vInorder_r();
 			t2 = tTree;
 			cout<<"\nCopied tree using Inorder: ";
 			t2.vInorder_r();
 			break;
-		case '9':
+		case 9:
+			cout<<"Current tree using Inorder: ";
+			tTree.vInorder_r();
+			t2.vCopy_nr(tTree);
+			cout<<"\nCopied tree using Inorder: ";
+			t2.vInorder_r();
+			break;
+		case 10:
 			tTree.vEraseTree();
+			cout<<"Tree Deleted\n";
 			break;
 		default:
 			break;
