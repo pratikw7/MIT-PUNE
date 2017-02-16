@@ -50,7 +50,7 @@ void cLine::vDDA()
     float dy = (y2-y1)/iLength;
 
     float x = x1 + 0.5f*iSign(dx);
-    float y = y1 + 0.5f*iSign(dx);
+    float y = y1 + 0.5f*iSign(dy);
 
     setPixel(floor(x),floor(y));
     int i=iLength;
@@ -75,3 +75,6 @@ int main()
     closegraph();
     return 0;
 }
+
+
+
