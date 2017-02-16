@@ -1,3 +1,5 @@
+;----Ashwin Vaidya-----
+;------202030----------
 section .data
 	msg1 db "The array is: "
 	msg1Len equ $-msg1
@@ -49,3 +51,14 @@ print nl,1
 mov rax,60
 mov rdi,0
 syscall
+;------OUTPUT----------
+When array is 23h,56h,	-98h,11h,-0AFh,0FFh,-90h
+Output-
+The array is: 
+No. of positive numbers are: 4
+No. of negative numbers are: 3
+When array is 23h,56h,	98h,11h,0AFh,0FFh,90h
+Output-
+The array is: 
+No. of positive numbers are: 7
+No. of negative numbers are: 0
