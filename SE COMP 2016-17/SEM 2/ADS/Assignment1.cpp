@@ -19,7 +19,7 @@ cTreeNode::cTreeNode()
 }
 class cStack
 {
-	cTreeNode *NodeList[10];
+	cTreeNode *NodeList[20];
 	int iTop;
 	friend class cTree;
 public:
@@ -36,7 +36,7 @@ bool cStack::bIsEmpty()
 }
 void cStack::vPush(cTreeNode *Node)
 {
-	if(iTop >9)
+	if(iTop>19)
 		cout<<"Overflow!\n";
 	else
 	{
@@ -68,9 +68,10 @@ class cTree
 	cStack cSt;
 	cTreeNode *root;
 public:
-	void operator=(cTree );
+	void operator=(cTree *);
 	cTreeNode *nCopy(cTreeNode*);
-	void vCopy_nr(cTree &);
+	//void vCopy_nr(cTree &);
+	void Copy_nr(cTree&);
 	void vCreate_nr();
 	void vCreate_r();
 	void vCreate_r(cTreeNode *);
@@ -88,34 +89,46 @@ public:
 	~cTree();
 };
 
-void cTree::vCopy_nr(cTree &other)
+void cTree::Copy_nr(cTree &t1)
 {
-	root = new cTreeNode;
-	cTreeNode *temp = root;
-	cStack otherStack;
-	cTreeNode *otherTemp = other.root;
-		if(other.root == NULL)
-			root = NULL;
-		else{
+		cTreeNode *temp;
+		cStack st;
+		cStack st1;
+		temp=root;
+		cTreeNode* curr=new cTreeNode;
+		t1.root=curr;
 		while(1)
 		{
-			while(otherTemp!=NULL)
+			while(temp!=NULL)
 			{
-				cSt.vPush(temp);
-				otherStack.vPush(otherTemp);
-				temp->left = new cTreeNode;
-				temp = temp->left;
-				otherTemp = otherTemp->left;
+				st.vPush(temp);
+				st1.vPush(curr);
+				curr->sData=temp->sData;
+				if(temp->left!=NULL)
+				{
+					cTreeNode *temp1=new cTreeNode;
+					temp1->left=NULL;
+					temp1->right=NULL;
+					curr->left=temp1;
+
+				}
+					curr=curr->left;
+					temp=temp->left;
 			}
-			if(otherStack.bIsEmpty())
+			if(st.bIsEmpty())
 				break;
-			temp = cSt.nPop();
-			otherTemp = otherStack.nPop();
-			temp->sData = otherTemp->sData;
-			temp->right = new cTreeNode;
-			temp= temp->right;
-			otherTemp= otherTemp->right;
-		}
+			temp=st.nPop();
+			curr=st1.nPop();
+			if(temp->right!=NULL)
+			{
+				cTreeNode *temp1=new cTreeNode;
+				temp1->left=NULL;
+				temp1->right=NULL;
+				curr->right=temp1;
+			}
+			temp=temp->right;
+			curr=curr->right;
+
 		}
 }
 
@@ -126,6 +139,7 @@ cTree::~cTree()
 }
 void cTree::vEraseTree()
 {
+	cTreeNode* temp1;
 	cTreeNode *temp = root;
 		if(root == NULL)
 				cout<<"Tree is empty\n";
@@ -140,12 +154,14 @@ void cTree::vEraseTree()
 			if(cSt.NodeList[cSt.iTop]->right == NULL)
 			{
 				temp = cSt.nPop();
-				delete temp;
+				temp1 = temp;
+				delete temp1;
 			}
 				while(!cSt.bIsEmpty() && cSt.NodeList[cSt.iTop]->right == temp)
 			{
 				temp = cSt.nPop();
-				delete temp;
+				temp1 = temp;
+				delete temp1;
 			}
 			if(cSt.bIsEmpty())
 				break;
@@ -155,9 +171,9 @@ void cTree::vEraseTree()
 
 		root = NULL;
 }
-void cTree::operator =(cTree t2)
+void cTree::operator =(cTree *t2)
 {
-	root = nCopy(t2.root);
+	root = nCopy(t2->root);
 }
 cTreeNode *cTree::nCopy(cTreeNode *node)
 {
@@ -272,8 +288,8 @@ void cTree::vPreorder_r(cTreeNode *node)
 	if(node!=NULL)
 	{
 		cout<<node->sData<<" ";
-		vPostorder_r(node->left);
-		vPostorder_r(node->right);
+		vPreorder_r(node->left);
+		vPreorder_r(node->right);
 	}
 }
 void cTree::vInorder_r()
@@ -443,7 +459,7 @@ int main()
 		case 9:
 			cout<<"Current tree using Inorder: ";
 			tTree.vInorder_r();
-			t2.vCopy_nr(tTree);
+			tTree.Copy_nr(t2);
 			cout<<"\nCopied tree using Inorder: ";
 			t2.vInorder_r();
 			break;
@@ -462,4 +478,147 @@ int main()
 
 	return 0;
 }
+/*OUTPUT
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+2
 
+Inorder:
+2 4 3 6 5 1 8 7 11 10 12 9
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+3
+
+Preorder:
+1 2 3 4 5 6 7 8 9 10 11 12
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+4
+
+Postorder:
+4 6 5 3 2 8 11 12 10 9 7 1
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+5
+2 4 3 6 5 1 8 7 11 10 12 9
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+6
+1 2 3 4 5 6 7 8 9 10 11 12
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+7
+4 6 5 3 2 8 11 12 10 9 7 1
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+8
+Current tree using Inorder:
+Inorder:
+2 4 3 6 5 1 8 7 11 10 12 9
+Copied tree using Inorder:
+Inorder:
+2 4 3 6 5 1 8 7 11 10 12 9
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+9
+Current tree using Inorder:
+Inorder:
+2 4 3 6 5 1 8 7 11 10 12 9
+Copied tree using Inorder:
+Inorder:
+2 4 3 6 5 1 8 7 11 10 12 9
+Do you want to continue?(y)y
+0. Create tree using recursion
+1. Create tree using non-recursion
+2. Recursive Inorder
+3. Recursive Preorder
+4. Recursive Postorder
+5. Non-Recursive Inorder
+6. Non-Recursive Preorder
+7. Non-Recursive Postorder
+8. Recursive Copy current tree to another tree
+9. Non-Recursive Copy current tree to another tree
+10. Delete tree
+10
+Tree Deleted
+
+*/
