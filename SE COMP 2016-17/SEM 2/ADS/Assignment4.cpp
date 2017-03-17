@@ -3,7 +3,56 @@
 //++++++++++++++++++++++++++++++++++++
 #include <iostream>
 using namespace std;
-
+class cQueue
+{
+    int iData[20];
+    int rear, front;
+public:
+    cQueue();
+    bool bIsEmpty();
+    void vInsert(int);
+    int iRemove();
+};
+cQueue::cQueue()
+{
+    rear=-1;
+    front=-1;
+}
+bool cQueue::bIsEmpty()
+{
+    if(rear==front)
+        return true;
+    return false;
+}
+void cQueue::vInsert(int temp)
+{
+    rear++;
+    iData[rear]=temp;
+}
+int cQueue::iRemove()
+{
+    int temp;
+    if(rear==front)
+        cout<<"\nQueue is empty";
+    else
+    {
+        front=front+1;
+        temp=iData[front];
+    }
+    return temp;
+}
+class cStack
+{
+    int iStack[20];
+    int top;
+public:
+    cStack();
+    void vPush(int);
+    int iPop();
+    bool bIsEmpty();
+    bool bIsFull();
+    int iTop();
+};
 class Node
 {
 private:
@@ -14,7 +63,49 @@ public:
     Node();
     friend class ListGraph;
 };
-
+cStack::cStack()
+{
+    top=-1;
+}
+int cStack::iTop()
+{
+    return iStack[top];
+}
+bool cStack::bIsFull()
+{
+    if(top==19)
+        return true;
+    return false;
+}
+bool cStack::bIsEmpty()
+{
+    if(top==-1)
+        return true;
+    return false;
+}
+void cStack::vPush(int temp)
+{
+    
+    if(bIsFull())
+        cout<<"\nStack is full";
+    else
+    {
+        top=top+1;
+        iStack[top]=temp;
+    }
+}
+int cStack::iPop()
+{
+    int temp =-1;
+    if(bIsEmpty())
+        cout<<"\nStack is empty";
+    else
+    {
+        temp=iStack[top];
+        top--;
+    }
+    return temp;
+}
 Node::Node()
 {
     next = NULL;
@@ -84,11 +175,105 @@ class ListGraph
 private:
     int noOfCities;
     Node *iArrList[10];//Maximum 10 cities
+    int iVisited[10];
 public:
     ListGraph();
     void vGetList();
     void vDisplayList();
+    void vDFS_NonRec(char );
+    void vDFS_Rec();
+    void vDFS_Rec(int,int[]);
+    void vBFS();
 };
+void ListGraph::vBFS()
+{
+    cQueue queue;
+    Node *temp;
+    for (int i = 0; i < noOfCities; ++i)
+    {
+        iVisited[i]=0;
+    }
+    cout<<"\nEnter starting vertex: ";
+    char c;
+    cin>>c;
+    iVisited[(int)c-97]=1;
+    queue.vInsert((int)c-97);
+    cout<<' '<<c;
+    while(!queue.bIsEmpty())
+    {
+        int m=queue.iRemove();
+        temp=iArrList[m];
+        while(temp!=NULL)
+        {
+            if(!iVisited[(int)temp->cCityName-97])
+            {
+                iVisited[(int)temp->cCityName-97]=1;
+                cout<<' '<<temp->cCityName;
+                queue.vInsert((int)temp->cCityName-97);
+            }
+            temp=temp->next;
+        }
+    }
+}
+void ListGraph::vDFS_Rec()
+{
+    char vertex;
+    for (int i = 0; i < noOfCities; i++)
+    {
+        iVisited[i]=0;
+    }
+    cout<<"\nEnter starting vertex: ";
+    cin>>vertex;
+    vDFS_Rec((int)vertex-97,iVisited);
+}
+void ListGraph::vDFS_Rec(int vertex, int iVisited[])
+{
+    Node *temp;
+    iVisited[vertex]=1;
+    cout<<' '<<(char)(vertex+97);
+    temp = iArrList[vertex];
+    for (int i = 0; i < noOfCities; i++)
+    {
+        while(temp!=NULL)
+        {
+            if(!iVisited[(int)temp->cCityName-97])
+                vDFS_Rec((int)temp->cCityName-97,iVisited);
+            temp = temp->next;
+        }   
+    }
+}
+void ListGraph::vDFS_NonRec(char start)
+{
+    cStack stack;
+    int s = (int)start-97;
+    Node *temp;
+    for (int i = 0; i < noOfCities; ++i)
+    {
+        iVisited[i]=0;
+    }
+    stack.vPush(s);
+    while(!stack.bIsEmpty())
+    {
+        s = stack.iTop();
+        if(iVisited[s]==0)
+        {
+            iVisited[s]=1;
+            cout<<(char)(s+97)<<' ';
+        }
+        temp=iArrList[s];
+        while(temp!=NULL)
+        {
+            if (iVisited[(int)temp->cCityName-97]==0)
+            {
+                stack.vPush((int)temp->cCityName-97);
+                break;
+            }
+            if(temp==NULL)
+                s=stack.iPop();
+            temp = temp->next;
+        }
+    }
+}
 void ListGraph::vDisplayList()
 {
    for(int i=0;i<noOfCities; i++)
@@ -161,6 +346,9 @@ int main()
         cout<<"2. Enter graph in List form\n";
         cout<<"3. Show Matrix graph\n";
         cout<<"4. Show List graph\n";
+        cout<<"5. Display BFS\n";
+        cout<<"6. Display DFS Non-Rec\n";
+        cout<<"7. Display DFS Rec\n";
         cin>>inp;
         switch(inp)
         {
@@ -175,6 +363,17 @@ int main()
             break;
         case '4':
 	    graph2.vDisplayList();
+            break;
+        case '5':
+	    graph2.vBFS();
+            break;
+        case '6':
+        cout<<"Enter starting vertex: ";
+        cin>>inp;
+	    graph2.vDFS_NonRec(inp);
+            break;
+        case '7':
+	    graph2.vDFS_Rec();
             break;
         }
         cout<<"Enter y to continue";
