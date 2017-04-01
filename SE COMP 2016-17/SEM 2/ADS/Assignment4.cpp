@@ -261,14 +261,16 @@ void ListGraph::vDFS_NonRec(char start)
             cout<<(char)(s+97)<<' ';
         }
         temp=iArrList[s];
+        if(temp==NULL)
+            s=stack.iPop();
         while(temp!=NULL)
         {
-            if (iVisited[(int)temp->cCityName-97]==0)
+            if (iVisited[(int)(temp->cCityName)-97]==0)
             {
-                stack.vPush((int)temp->cCityName-97);
+                stack.vPush((int)(temp->cCityName)-97);
                 break;
             }
-            if(temp==NULL)
+            if(temp->next==NULL)
                 s=stack.iPop();
             temp = temp->next;
         }
@@ -371,7 +373,7 @@ int main()
         cout<<"Enter starting vertex: ";
         cin>>inp;
 	    graph2.vDFS_NonRec(inp);
-            break;
+        break;
         case '7':
 	    graph2.vDFS_Rec();
             break;
