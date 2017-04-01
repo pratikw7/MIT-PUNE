@@ -73,6 +73,7 @@ void cHashTable::vInsert()
 	cout<<"Enter Phone Number: ";
 	cin>>temp->ph_number;
 	key = iCalculateKey(temp->sName);
+	cout<<"\nHashed to key: "<<key<<endl;
 	curr = Buckets[key];
 	while(curr->next!=NULL)
 	{
