@@ -39,8 +39,7 @@ void Pixel::paintEvent(QPaintEvent *q){
     y1=b.toInt();
     x2=c.toInt();
     y2=d.toInt();
-    z.drawLine(320,0,320,480);
-    z.drawLine(0,240,640,240);
+
     length = getLength();
     x=0;
     y=length;

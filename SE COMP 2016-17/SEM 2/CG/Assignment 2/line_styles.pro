@@ -1,12 +1,14 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-02-15T13:42:48
+# Project created by QtCreator 2017-02-09T21:48:35
 #
 #-------------------------------------------------
 
 QT       += core gui
 
-TARGET = Assignment4
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = line_styles
 TEMPLATE = app
 
 
