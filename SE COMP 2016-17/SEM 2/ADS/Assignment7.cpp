@@ -150,6 +150,7 @@ void cSymbolTable::vInsert_REP()
 	temp->sName = name;
 	cin>>temp->ph_number;
 	index = iHashfunction(name);
+	cout<<"\nHashed to key: "<<index<<endl;
 	curr = Buckets[index];
 	if(curr->next!=NULL)
      {
@@ -174,6 +175,7 @@ void cSymbolTable::vInsert_WREP()
 	cout<<"Enter phone number: ";
 	cin>>temp->ph_number;
 	index = iHashfunction(name);
+	cout<<"\nHashed to key: "<<index<<endl;
 	curr = Buckets[index];
 	while(curr->next!=NULL)
 	{
