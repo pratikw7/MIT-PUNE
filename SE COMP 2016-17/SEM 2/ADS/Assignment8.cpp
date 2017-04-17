@@ -15,7 +15,15 @@ public:
         left = NULL;
         right = NULL;
         n=0;
+	
     }
+	cNode* find_min()
+	{
+	cNode *curr=this;
+	while(curr->left!=NULL)
+		curr=this->left;
+	return curr;
+	}
     friend class cBST;
 };
 class cBST{
@@ -30,12 +38,13 @@ public:
     	string word;
     	cin>>word;
     	vInsert(word,NULL,NULL);
+	vDisplay();
     }
     void vInsert(string word,cNode* next,cNode* prev){
         if(root == NULL){
             root = new cNode();
             root->word.assign(word);
-            cout<<"\n Enter meaning "<<word<<endl;
+            cout<<"\nEnter its meaning "<<word<<endl;
             cin>>(root->meaning);
             root->n=0;
         }else{
@@ -77,10 +86,7 @@ public:
 
                     vInsert(word,next->right,next);
                 }
-            }else{
-                cout<<"\n The word "<<word<<" exists in the dictionary"<<endl;
             }
-
 
             next->n=iHeight(next->left)-iHeight(next->right);
 
@@ -128,7 +134,7 @@ public:
 
                 A->left = B->right;
                 B->right = A;
-                cout<<"\n LL rotation \n";
+                cout<<"\nLL Rotation \n";
                 return B;
 
             }else{                        // LR Rotation
@@ -138,7 +144,7 @@ public:
                 A->left = C->right;
                 C->left = B;
                 C->right = A;
-                cout<<"\n LR rotation \n";
+                cout<<"\nLR Rotation \n";
                 return C;
             }
 
@@ -149,7 +155,7 @@ public:
 
                 A->right = B->left;
                 B->left = A;
-                cout<<"\n RR rotation \n";
+                cout<<"\nRR Rotation \n";
                 return B;
             }else{                        // RL Rotation
                 C = B->left;
@@ -158,7 +164,7 @@ public:
                 A->right = C->left;
                 C->left = A;
                 C->right = B;
-                cout<<"\n RL rotation \n";
+                cout<<"\nRL Rotation \n";
                 return C;
             }
         }
@@ -182,6 +188,115 @@ public:
             vDisplay(next->right);
         }
     }
+    void vModify()
+    {
+	cNode *temp;
+	temp=root;
+	string  word;
+	cout<<"Enter word whose meaning you want to modify:";
+	cin>>word;
+	while (word !=temp->word && temp!=NULL)
+	{
+		if (word > temp->word)
+			temp=temp->right;
+		else
+			temp=temp->left;
+
+	}
+	if(temp!=NULL)
+	{
+		cout<<"Enter new meaning :";
+		cin>>temp->meaning;
+	}
+	else
+	{
+		cout<<"Word not in dictionary, search on google\n";
+	}
+    }
+void vDelete()
+{
+	string word;
+	cout<<"Enter word to be deleted:";
+	cin>>word;
+	root=vDelete(root,word);
+	cout<<"Word deleted\n";
+}
+
+cNode* vDelete(cNode *curr,string word)
+{
+
+	if(curr==NULL)
+	{
+		cout<<"\nWord not in dictionary, search on google";
+		return curr;
+	}
+
+	if (word < curr->word)
+	{
+		curr->left=vDelete(curr->left,word);
+		return curr;
+	}
+
+	if (word > curr->word)
+	{
+		curr->right=vDelete(curr->right,word);
+		return curr;
+	}
+	if(curr->left==NULL && curr->right==NULL)
+	{
+		cNode *temp=curr;
+		delete temp;
+		return NULL;
+	}
+	if(curr->left==NULL)
+	{
+		cNode *temp=curr;
+		curr=curr->right;
+		delete temp;
+		return curr;
+	}
+	if(curr->right==NULL)
+	{
+		cNode *temp=curr;
+		curr=curr->left;
+		delete temp;
+		return curr;
+	}
+	cNode *temp=curr->right->find_min();
+	curr->word=temp->word;
+	curr->right=vDelete(curr->right,temp->word);
+	return curr;
+
+
+}
+    void vSearch()
+    {
+	cNode *temp;
+	int flag=0;
+	temp=root;
+	string word;
+	cout<<"Enter word to be searched:";
+	cin>>word;
+
+	flag=0;
+	while(flag==0 && temp!=NULL){
+
+		if(word==temp->word){
+			cout<<"Word: "<<temp->word;
+			cout<<"\nMeaning: "<<temp->meaning;
+			cout<<endl;
+			flag=1;
+		}
+
+		else if (word > temp->word)
+			temp = temp->right;
+		else
+			temp = temp->left;
+	}
+
+	if(flag==0)
+		cout<<"Word not in dictionary,search on google "<<endl;
+    }
 
 };
 
@@ -195,6 +310,9 @@ int main()
 	{
 		cout<<"1. Insert\n";
 		cout<<"2. Display inorder traversal\n";
+		cout<<"3. Search\n";
+		cout<<"4. Modify\n";
+		cout<<"5. Delete\n";
 		cin>>inp;
 		switch(inp)
 		{
@@ -204,9 +322,155 @@ int main()
 			case '2':
 				T.vDisplay();
 				break;
+			case '3':
+				T.vSearch();
+				break;
+			case '4':
+				T.vModify();
+				break;
+			case '5':
+				T.vDelete();
 		}
 		cout<<"Enter y to continue ";
 		cin>>inp;
 	} while (inp=='y');
 	return 0;
 }
+/*------OUTPUT------
+1. Insert
+2. Display inorder traversal
+1
+Enter word: mar
+
+Enter its meaning mar
+dsfg
+Word	Meaning		Height
+mar	dsfg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: may
+
+ Enter meaning may
+dfg
+Word	Meaning		Height
+mar	dsfg		-1
+may	dfg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: nov
+
+ Enter meaning nov
+drg
+
+RR Rotation 
+Word	Meaning		Height
+mar	dsfg		0
+may	dfg		0
+nov	drg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: aug
+
+ Enter meaning aug
+fg
+Word	Meaning		Height
+aug	fg		0
+mar	dsfg		1
+may	dfg		1
+nov	drg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: apr
+
+ Enter meaning apr
+dfg
+
+LL Rotation 
+Word	Meaning		Height
+apr	dfg		0
+aug	fg		0
+mar	dsfg		0
+may	dfg		1
+nov	drg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: jan
+
+ Enter meaning jan
+dfg
+
+LR Rotation 
+Word	Meaning		Height
+apr	dfg		0
+aug	fg		0
+jan	dfg		0
+mar	dsfg		0
+may	dfg		-1
+nov	drg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: dec
+
+ Enter meaning dec
+sfd
+Word	Meaning		Height
+apr	dfg		0
+aug	fg		-1
+dec	sfd		0
+jan	dfg		1
+mar	dsfg		1
+may	dfg		-1
+nov	drg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: july
+
+ Enter meaning july
+df
+Word	Meaning		Height
+apr	dfg		0
+aug	fg		-1
+dec	sfd		0
+jan	dfg		0
+july	df		0
+mar	dsfg		1
+may	dfg		-1
+nov	drg		0
+Enter y to continue y
+1. Insert
+2. Display inorder traversal
+1
+Enter word: feb
+
+ Enter meaning feb
+df
+
+RL Rotation 
+Word	Meaning		Height
+apr	dfg		0
+aug	fg		1
+dec	sfd		0
+feb	df		0
+jan	dfg		0
+july	df		0
+mar	dsfg		1
+may	dfg		-1
+nov	drg		0
+Enter y to continue 
+
+
+*/

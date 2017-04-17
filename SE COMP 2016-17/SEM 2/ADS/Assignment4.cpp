@@ -383,4 +383,179 @@ int main()
     }while(inp == 'y');
     return 0;
 }
+/*-------OUTPUT-------------
+1. Enter graph in Matrix form
+2. Enter graph in List form
+3. Show Matrix graph
+4. Show List graph
+5. Display BFS
+6. Display DFS Non-Rec
+7. Display DFS Rec
+1
+Enter flight details of AI143:
+Enter number of cities:
+6
+Is there a route between cities a and a y/n: n
+Is there a route between cities a and b y/n: y
+Enter distance between the cities: 34
+Is there a route between cities a and c y/n: y
+Enter distance between the cities: 34
+Is there a route between cities a and d y/n: y
+Enter distance between the cities: 67
+Is there a route between cities a and e y/n: y
+Enter distance between the cities: 1
+Is there a route between cities a and f y/n: n
+Is there a route between cities b and a y/n: n
+Is there a route between cities b and b y/n: n
+Is there a route between cities b and c y/n: n
+Is there a route between cities b and d y/n: n
+Is there a route between cities b and e y/n: n
+Is there a route between cities b and f y/n: y
+Enter distance between the cities: 67
+Is there a route between cities c and a y/n: n
+Is there a route between cities c and b y/n: n
+Is there a route between cities c and c y/n: n
+Is there a route between cities c and d y/n: n
+Is there a route between cities c and e y/n: n
+Is there a route between cities c and f y/n: y
+Enter distance between the cities: 5
+Is there a route between cities d and a y/n: n
+Is there a route between cities d and b y/n: n
+Is there a route between cities d and c y/n: n
+Is there a route between cities d and d y/n: n
+Is there a route between cities d and e y/n: n
+Is there a route between cities d and f y/n: y
+Enter distance between the cities: 45
+Is there a route between cities e and a y/n: n
+Is there a route between cities e and b y/n: n
+Is there a route between cities e and c y/n: n
+Is there a route between cities e and d y/n: n
+Is there a route between cities e and e y/n: n
+Is there a route between cities e and f y/n: y
+Enter distance between the cities: 3
+Is there a route between cities f and a y/n: n
+Is there a route between cities f and b y/n: n
+Is there a route between cities f and c y/n: n
+Is there a route between cities f and d y/n: n
+Is there a route between cities f and e y/n: n
+Is there a route between cities f and f y/n: n
+Enter y to continuey
+1. Enter graph in Matrix form
+2. Enter graph in List form
+3. Show Matrix graph
+4. Show List graph
+5. Display BFS
+6. Display DFS Non-Rec
+7. Display DFS Rec
+3
+Flight details of AI143:
+0	34	34	67	1	0	
+0	0	0	0	0	67	
+0	0	0	0	0	5	
+0	0	0	0	0	45	
+0	0	0	0	0	3	
+0	0	0	0	0	0	
+Enter y to continue
+1. Enter graph in Matrix form
+2. Enter graph in List form
+3. Show Matrix graph
+4. Show List graph
+5. Display BFS
+6. Display DFS Non-Rec
+7. Display DFS Rec
+2
+Enter number of cities: 6
+Is there a route between cities a and a y/n: n
+Is there a route between cities a and b y/n: y
+Enter Distance between cities: 3
+Is there a route between cities a and c y/n: y
+Enter Distance between cities: 7
+Is there a route between cities a and d y/n: y
+Enter Distance between cities: 8
+Is there a route between cities a and e y/n: y
+Enter Distance between cities: 3
+Is there a route between cities a and f y/n: n
+Is there a route between cities b and a y/n: n
+Is there a route between cities b and b y/n: n
+Is there a route between cities b and c y/n: n
+Is there a route between cities b and d y/n: n
+Is there a route between cities b and e y/n: n
+Is there a route between cities b and f y/n: y
+Enter Distance between cities: 8
+Is there a route between cities c and a y/n: n
+Is there a route between cities c and b y/n: n
+Is there a route between cities c and c y/n: n
+Is there a route between cities c and d y/n: n
+Is there a route between cities c and e y/n: n
+Is there a route between cities c and f y/n: y
+Enter Distance between cities: 2
+Is there a route between cities d and a y/n: n
+Is there a route between cities d and b y/n: n
+Is there a route between cities d and c y/n: n
+Is there a route between cities d and d y/n: n
+Is there a route between cities d and e y/n: n
+Is there a route between cities d and f y/n: y
+Enter Distance between cities: 8
+Is there a route between cities e and a y/n: n
+Is there a route between cities e and b y/n: n
+Is there a route between cities e and c y/n: n
+Is there a route between cities e and d y/n: n
+Is there a route between cities e and e y/n: n
+Is there a route between cities e and f y/n: y
+Enter Distance between cities: 9
+Is there a route between cities f and a y/n: n
+Is there a route between cities f and b y/n: n
+Is there a route between cities f and c y/n: n
+Is there a route between cities f and d y/n: n
+Is there a route between cities f and e y/n: n
+Is there a route between cities f and f y/n: n
+Enter y to continuey
+1. Enter graph in Matrix form
+2. Enter graph in List form
+3. Show Matrix graph
+4. Show List graph
+5. Display BFS
+6. Display DFS Non-Rec
+7. Display DFS Rec
+4
+a->b (3) ->c (7) ->d (8) ->e (3) 
+b->f (8) 
+c->f (2) 
+d->f (8) 
+e->f (9) 
+f
+Enter y to continuey
+1. Enter graph in Matrix form
+2. Enter graph in List form
+3. Show Matrix graph
+4. Show List graph
+5. Display BFS
+6. Display DFS Non-Rec
+7. Display DFS Rec
+5
+
+Enter starting vertex: a
+ a b c d e fEnter y to continuey
+1. Enter graph in Matrix form
+2. Enter graph in List form
+3. Show Matrix graph
+4. Show List graph
+5. Display BFS
+6. Display DFS Non-Rec
+7. Display DFS Rec
+6
+Enter starting vertex: a
+a b f c d e Enter y to continuey
+1. Enter graph in Matrix form
+2. Enter graph in List form
+3. Show Matrix graph
+4. Show List graph
+5. Display BFS
+6. Display DFS Non-Rec
+7. Display DFS Rec
+7
+
+Enter starting vertex: a
+ a b f c d eEnter y to continuen
+*/
 

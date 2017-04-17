@@ -135,3 +135,52 @@ int main()
 	} while (inp=='y');
 	return 0;
 }
+/*----OUTPUT-------
+Enter number of vertices: 7
+1. Enter graph
+2. Display graph
+3. Find shortest path
+1
+Enter 0 if vertices are not adjacent
+Enter cost of edge between 0 and 1 : 11
+Enter cost of edge between 0 and 2 : 0
+Enter cost of edge between 0 and 3 : 40
+Enter cost of edge between 0 and 4 : 0
+Enter cost of edge between 0 and 5 : 0
+Enter cost of edge between 0 and 6 : 0
+Enter cost of edge between 1 and 2 : 20
+Enter cost of edge between 1 and 3 : 61
+Enter cost of edge between 1 and 4 : 40
+Enter cost of edge between 1 and 5 : 0
+Enter cost of edge between 1 and 6 : 0
+Enter cost of edge between 2 and 3 : 0
+Enter cost of edge between 2 and 4 : 50
+Enter cost of edge between 2 and 5 : 80
+Enter cost of edge between 2 and 6 : 0
+Enter cost of edge between 3 and 4 : 33
+Enter cost of edge between 3 and 5 : 0
+Enter cost of edge between 3 and 6 : 40
+Enter cost of edge between 4 and 5 : 81
+Enter cost of edge between 4 and 6 : 72
+Enter cost of edge between 5 and 6 : 33
+Do you want to continue?(y) y
+1. Enter graph
+2. Display graph
+3. Find shortest path
+2
+The graph is: 
+0	11	9999	40	9999	9999	9999	
+11	0	20	61	40	9999	9999	
+9999	20	0	9999	50	80	9999	
+40	61	9999	0	33	9999	40	
+9999	40	50	33	0	81	72	
+9999	9999	80	9999	81	0	33	
+9999	9999	9999	40	72	33	0	
+Do you want to continue?(y) y
+1. Enter graph
+2. Display graph
+3. Find shortest path
+3
+Enter starting vertex: 0
+0->1->2->3->4->6->5->Minumum cost is: 177Do you want to continue?(y) 
+*/
