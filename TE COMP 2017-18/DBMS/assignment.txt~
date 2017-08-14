@@ -1,0 +1,638 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 5.5.54-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| HotelDatabase      |
+| Port               |
+| company            |
+| db1                |
+| hotel              |
+| library            |
+| mysql              |
+| performance_schema |
+| proj               |
++--------------------+
+10 rows in set (0.05 sec)
+
+mysql> create database EMINEM;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use EMINEM;'
+Database changed
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table INSTRUMENT (iCode int primary key, iname varchar(20), purchaseDate date, price float(5,2));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc INSTRUMENT;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| iCode        | int(11)     | NO   | PRI | NULL    |       |
+| iname        | varchar(20) | YES  |     | NULL    |       |
+| purchaseDate | date        | YES  |     | NULL    |       |
+| price        | float(5,2)  | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table MUSICIAN (mId int primary key auto_increment, mname varchar(20), mAddress varchar(255), iCode int, foreign key(iCode) references INSTRUMENT(iCode));
+Query OK, 0 rows affected (0.07 sec)
+
+
+mysql> desc MUSICIAN;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| mId      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| mname    | varchar(20)  | YES  |     | NULL    |                |
+| mAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> create table MUSICIALCOMPANY (cName varchar(20), phoneNo int, cAddress varchar(255), iCode int,mId int, foreign key(iCode) references INSTRUMENT(iCode),foreign key(mId) references MUSICIAN(mId));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc MUSICIALCOMPANY;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| cName    | varchar(20)  | YES  |     | NULL    |       |
+| phoneNo  | int(11)      | YES  |     | NULL    |       |
+| cAddress | varchar(255) | YES  |     | NULL    |       |
+| iCode    | int(11)      | YES  | MUL | NULL    |       |
+| mId      | int(11)      | YES  | MUL | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_EMINEM |
++------------------+
+| INSTRUMENT       |
+| MUSICIALCOMPANY  |
+| MUSICIAN         |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc MUSICIAN;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| mId      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| mname    | varchar(20)  | YES  |     | NULL    |                |
+| mAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc MUSICIALCOMPANY;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| cName    | varchar(20)  | YES  |     | NULL    |       |
+| phoneNo  | int(11)      | YES  |     | NULL    |       |
+| cAddress | varchar(255) | YES  |     | NULL    |       |
+| iCode    | int(11)      | YES  | MUL | NULL    |       |
+| mId      | int(11)      | YES  | MUL | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc INSTRUMENT;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| iCode        | int(11)     | NO   | PRI | NULL    |       |
+| iname        | varchar(20) | YES  |     | NULL    |       |
+| purchaseDate | date        | YES  |     | NULL    |       |
+| price        | float(5,2)  | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> alter table INSTRUMENT modify column iCode int auto_increment;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc INSTRUMENT;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| iCode        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| iname        | varchar(20) | YES  |     | NULL    |                |
+| purchaseDate | date        | YES  |     | NULL    |                |
+| price        | float(5,2)  | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> desc MUSICIAN;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| mId      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| mname    | varchar(20)  | YES  |     | NULL    |                |
+| mAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+
+mysql> desc MUSICIALCOMPANY;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| cName    | varchar(20)  | YES  |     | NULL    |       |
+| phoneNo  | int(11)      | YES  |     | NULL    |       |
+| cAddress | varchar(255) | YES  |     | NULL    |       |
+| iCode    | int(11)      | YES  | MUL | NULL    |       |
+| mId      | int(11)      | YES  | MUL | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table MUSICIALCOMPANY modify column mId int auto_increment;
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc MUSICIALCOMPANY;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| cName    | varchar(20)  | YES  |     | NULL    |                |
+| phoneNo  | int(11)      | YES  |     | NULL    |                |
+| cAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
+| mId      | int(11)      | NO   | MUL | NULL    | auto_increment |
++----------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+mysql> insert into INSTRUMENT (iname, purchaseDate, price) values('Guitar','2017-06-05', 99.99);
+Query OK, 1 row affected (0.04 sec)
+
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+-------+
+| iCode | iname  | purchaseDate | price |
++-------+--------+--------------+-------+
+|     1 | Guitar | 2017-06-05   | 99.99 |
++-------+--------+--------------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into INSTRUMENT (iname, purchaseDate, price) values('Piano','2018-06-05', 199.99);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
++-------+--------+--------------+--------+
+2 rows in set (0.00 sec)
+
+
+mysql> insert into INSTRUMENT values(7,'Sitar','1899-06-05', 199.99);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
+|     7 | Sitar  | 1899-06-05   | 199.99 |
++-------+--------+--------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into INSTRUMENT (iname, purchaseDate, price) values('drums','2003-12-03', 3000);
+Query OK, 1 row affected, 1 warning (0.04 sec)
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
+|     7 | Sitar  | 1899-06-05   | 199.99 |
+|     8 | drums  | 2003-12-03   | 999.99 |
++-------+--------+--------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> desc MUSICIAN;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| mId      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| mname    | varchar(20)  | YES  |     | NULL    |                |
+| mAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+
+mysql> insert into MUSICIAN(mname, mAddress,iCode) values ('ashwin','MIT college',1);
+Query OK, 1 row affected (0.04 sec)
+
+
+mysql> select * from MUSICIAN;
++-----+--------+-------------+-------+
+| mId | mname  | mAddress    | iCode |
++-----+--------+-------------+-------+
+|   2 | ashwin | MIT college |     1 |
++-----+--------+-------------+-------+
+1 row in set (0.00 sec)
+
+
+mysql> update MUSICIAN set mname="Raajas", mAddress="Bavdhan" where mId=1;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from MUSICIAN;
++-----+--------+-------------+-------+
+| mId | mname  | mAddress    | iCode |
++-----+--------+-------------+-------+
+|   2 | ashwin | MIT college |     1 |
++-----+--------+-------------+-------+
+1 row in set (0.00 sec)
+
+mysql> update MUSICIAN set mname="Raajas", mAddress="Bavdhan" where mId=2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update MUSICIAN set mname="Raajas", mAddress="Bavdhan" where mId=2;
+Query OK, 0 rows affected (0.03 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from MUSICIAN;
++-----+--------+----------+-------+
+| mId | mname  | mAddress | iCode |
++-----+--------+----------+-------+
+|   2 | Raajas | Bavdhan  |     1 |
++-----+--------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_EMINEM |
++------------------+
+| INSTRUMENT       |
+| MUSICIALCOMPANY  |
+| MUSICIAN         |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc MUSICIALCOMPANY;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| cName    | varchar(20)  | YES  |     | NULL    |                |
+| phoneNo  | int(11)      | YES  |     | NULL    |                |
+| cAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
+| mId      | int(11)      | NO   | MUL | NULL    | auto_increment |
++----------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from MUSICIALCOMPANY;
+Empty set (0.00 sec)
+
+mysql> insert into MUSICIALCOMPANY values ('Sony Music', 2780890839,'Japan mei kahi toh', 8,2);
+Query OK, 1 row affected, 1 warning (0.04 sec)
+
+mysql> select * from MUSICIALCOMPANY;
++------------+------------+--------------------+-------+-----+
+| cName      | phoneNo    | cAddress           | iCode | mId |
++------------+------------+--------------------+-------+-----+
+| Sony Music | 2147483647 | Japan mei kahi toh |     8 |   2 |
++------------+------------+--------------------+-------+-----+
+1 row in set (0.00 sec)
+
+mysql> select * from MUSICIAN;
++-----+--------+----------+-------+
+| mId | mname  | mAddress | iCode |
++-----+--------+----------+-------+
+|   2 | Raajas | Bavdhan  |     1 |
++-----+--------+----------+-------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
+|     7 | Sitar  | 1899-06-05   | 199.99 |
+|     8 | drums  | 2003-12-03   | 999.99 |
++-------+--------+--------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> insert into MUSICIALCOMPANY values ('Sony Music', 2780890839,'Japan mei kahi toh', 1,2);
+Query OK, 1 row affected, 1 warning (0.06 sec)
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
+|     7 | Sitar  | 1899-06-05   | 199.99 |
+|     8 | drums  | 2003-12-03   | 999.99 |
++-------+--------+--------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from MUSICIALCOMPANY;
++------------+------------+--------------------+-------+-----+
+| cName      | phoneNo    | cAddress           | iCode | mId |
++------------+------------+--------------------+-------+-----+
+| Sony Music | 2147483647 | Japan mei kahi toh |     8 |   2 |
+| Sony Music | 2147483647 | Japan mei kahi toh |     1 |   2 |
++------------+------------+--------------------+-------+-----+
+2 rows in set (0.00 sec)
+
+
+mysql> show tables;
++------------------+
+| Tables_in_EMINEM |
++------------------+
+| INSTRUMENT       |
+| MUSICIALCOMPANY  |
+| MUSICIAN         |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table MUSICIALCOMPANY add column yolo int;
+Query OK, 2 rows affected (0.22 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc MUSICIALCOMPANY;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| cName    | varchar(20)  | YES  |     | NULL    |                |
+| phoneNo  | int(11)      | YES  |     | NULL    |                |
+| cAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
+| mId      | int(11)      | NO   | MUL | NULL    | auto_increment |
+| yolo     | int(11)      | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> 
+
+mysql> alter table MUSICIALCOMPANY drop column yolo;
+Query OK, 2 rows affected (0.21 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc MUSICIALCOMPANY;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| cName    | varchar(20)  | YES  |     | NULL    |                |
+| phoneNo  | int(11)      | YES  |     | NULL    |                |
+| cAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
+| mId      | int(11)      | NO   | MUL | NULL    | auto_increment |
++----------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
+|     7 | Sitar  | 1899-06-05   | 199.99 |
+|     8 | drums  | 2003-12-03   | 999.99 |
++-------+--------+--------------+--------+
+4 rows in set (0.00 sec)
+
+
+mysql> delete from INSTRUMENT where iCode=7;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
+|     8 | drums  | 2003-12-03   | 999.99 |
++-------+--------+--------------+--------+
+3 rows in set (0.00 sec)
+
+	IF WE ADD MULTIPLE PRIMARY KEY
+mysql> alter table INSTRUMENT modify iname varchar(20) primary key;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> desc INSTRUMENT;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| iCode        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| iname        | varchar(20) | YES  |     | NULL    |                |
+| purchaseDate | date        | YES  |     | NULL    |                |
+| price        | float(5,2)  | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+drop table MUSICIALCOMPANY;
+Query OK, 0 rows affected (0.04 sec)
+mysql> show tables;
++------------------+
+| Tables_in_EMINEM |
++------------------+
+| INSTRUMENT       |
+| MUSICIAN         |
++------------------+
+2 rows in set (0.00 sec)
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+
+| iCode | iname  | purchaseDate | price  |
++-------+--------+--------------+--------+
+|     1 | Guitar | 2017-06-05   |  99.99 |
+|     2 | Piano  | 2018-06-05   | 199.99 |
+|     8 | drums  | 2003-12-03   | 999.99 |
++-------+--------+--------------+--------+
+3 rows in set (0.00 sec)
+
+	ADD COLUMN
+mysql> ALTER TABLE INSTRUMENT ADD COLUMN QTY INT;
+Query OK, 3 rows affected (0.24 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+------+
+| iCode | iname  | purchaseDate | price  | QTY  |
++-------+--------+--------------+--------+------+
+|     1 | Guitar | 2017-06-05   |  99.99 | NULL |
+|     2 | Piano  | 2018-06-05   | 199.99 | NULL |
+|     8 | drums  | 2003-12-03   | 999.99 | NULL |
++-------+--------+--------------+--------+------+
+3 rows in set (0.00 sec)
+
+
+mysql> update INSTRUMENT set QTY=12 WHERE iCode=1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update INSTRUMENT set QTY=3 WHERE iCode=2;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update INSTRUMENT set QTY=1 WHERE iCode=3;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+------+
+| iCode | iname  | purchaseDate | price  | QTY  |
++-------+--------+--------------+--------+------+
+|     1 | Guitar | 2017-06-05   |  99.99 |   12 |
+|     2 | Piano  | 2018-06-05   | 199.99 |    3 |
+|     8 | drums  | 2003-12-03   | 999.99 | NULL |
++-------+--------+--------------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> update INSTRUMENT set QTY=1 WHERE iCode=8;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+------+
+| iCode | iname  | purchaseDate | price  | QTY  |
++-------+--------+--------------+--------+------+
+|     1 | Guitar | 2017-06-05   |  99.99 |   12 |
+|     2 | Piano  | 2018-06-05   | 199.99 |    3 |
+|     8 | drums  | 2003-12-03   | 999.99 |    1 |
++-------+--------+--------------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_EMINEM |
++------------------+
+| INSTRUMENT       |
+| MUSICIAN         |
++------------------+
+2 rows in set (0.00 sec)
+
+
+mysql> create view stock as select iname,price,QTY, price*QTY as Total from INSTRUMENT;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from INSTRUMENT;
++-------+--------+--------------+--------+------+
+| iCode | iname  | purchaseDate | price  | QTY  |
++-------+--------+--------------+--------+------+
+|     1 | Guitar | 2017-06-05   |  99.99 |   12 |
+|     2 | Piano  | 2018-06-05   | 199.99 |    3 |
+|     8 | drums  | 2003-12-03   | 999.99 |    1 |
++-------+--------+--------------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_EMINEM |
++------------------+
+| INSTRUMENT       |
+| MUSICIAN         |
+| stock            |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from stock;
++--------+--------+------+---------+
+| iname  | price  | QTY  | Total   |
++--------+--------+------+---------+
+| Guitar |  99.99 |   12 | 1199.88 |
+| Piano  | 199.99 |    3 |  599.97 |
+| drums  | 999.99 |    1 |  999.99 |
++--------+--------+------+---------+
+3 rows in set (0.00 sec)
+
+
+mysql> desc MUSICIAN;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| mId      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| mname    | varchar(20)  | YES  |     | NULL    |                |
+| mAddress | varchar(255) | YES  |     | NULL    |                |
+| iCode    | int(11)      | YES  | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+	DROP AUTO INCREMENT
+mysql> alter table MUSICIAN modify mId int not null;
+Query OK, 1 row affected (0.19 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+	DROP PRIMARY KEY
+mysql> alter table MUSICIAN  drop primary key;
+Query OK, 1 row affected (0.20 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc MUSICIAN;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| mId      | int(11)      | NO   |     | NULL    |       |
+| mname    | varchar(20)  | YES  |     | NULL    |       |
+| mAddress | varchar(255) | YES  |     | NULL    |       |
+| iCode    | int(11)      | YES  | MUL | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+	GET CONSTRAINT NAME
+mysql> 
+show create table MUSICIAN;
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                       |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MUSICIAN | CREATE TABLE `MUSICIAN` (
+  `mId` int(11) NOT NULL,
+  `mname` varchar(20) DEFAULT NULL,
+  `mAddress` varchar(255) DEFAULT NULL,
+  `iCode` int(11) NOT NULL,
+  KEY `iCode` (`iCode`),
+  CONSTRAINT `MUSICIAN_ibfk_1` FOREIGN KEY (`iCode`) REFERENCES `INSTRUMENT` (`iCode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+	DROP FORIEGN KEY
+mysql> alter table MUSICIAN drop foreign key MUSICIAN_ibfk_1;
+Query OK, 1 row affected (0.20 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+	CREATE VIEW
+ create index iist on INSTRUMENT(iCode,iname);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++------------------+
+| Tables_in_EMINEM |
++------------------+
+| INSTRUMENT       |
+| MUSICIAN         |
++------------------+
+2 rows in set (0.00 sec)
+

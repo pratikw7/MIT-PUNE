@@ -1,0 +1,507 @@
+Database changed
+mysql> create table projects (Jid int(4), Jname varchar(20), City varchar(20));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_suppliers |
++---------------------+
+| parts               |
+| projects            |
+| shipment            |
+| suplr               |
++---------------------+
+4 rows in set (0.00 sec)
+
+mysql> desc shiopment;
+ERROR 1146 (42S02): Table 'suppliers.shiopment' doesn't exist
+mysql> desc shipment;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| Pid   | int(11) | YES  | MUL | NULL    |       |
+| Sid   | int(11) | YES  | MUL | NULL    |       |
+| QTY   | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc projects;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Jid   | int(4)      | YES  |     | NULL    |       |
+| Jname | varchar(20) | YES  |     | NULL    |       |
+| City  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table projects modify column Jid int primary key;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc projects;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Jid   | int(11)     | NO   | PRI | NULL    |       |
+| Jname | varchar(20) | YES  |     | NULL    |       |
+| City  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table projects modify column Jid int(4) primary key;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> alter table projects modify column Jid int(4);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc projects;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Jid   | int(4)      | NO   | PRI | 0       |       |
+| Jname | varchar(20) | YES  |     | NULL    |       |
+| City  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_suppliers |
++---------------------+
+| parts               |
+| projects            |
+| shipment            |
+| suplr               |
++---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from parts;
++-----+-------+--------+--------+--------+
+| Pid | Pname | Colour | Weight | City   |
++-----+-------+--------+--------+--------+
+|   1 | gear  | black  | 200gms | pune   |
+|   2 | axle  | black  | 200gms | mumbai |
+|   3 | bolt  | black  | 200gms | mumbai |
++-----+-------+--------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> desc projects;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Jid   | int(4)      | NO   | PRI | 0       |       |
+| Jname | varchar(20) | YES  |     | NULL    |       |
+| City  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table projects modify column Jid int(4) auto_increment;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc projects;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| Jid   | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Jname | varchar(20) | YES  |     | NULL    |                |
+| City  | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into projects (Jname, City) values ("Super highway","China")
+    -> ;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into projects (Jname, City) values ("LIGO","India")
+    -> ;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from projects;
++-----+--------------------+--------+
+| Jid | Jname              | City   |
++-----+--------------------+--------+
+|   1 | Drone              | London |
+|   2 | Library management | London |
+|   3 | Super highway      | China  |
+|   4 | Hyperloop          | Pune   |
+|   5 | LIGO               | India  |
++-----+--------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from projects where City='London';
++-----+--------------------+--------+
+| Jid | Jname              | City   |
++-----+--------------------+--------+
+|   1 | Drone              | London |
+|   2 | Library management | London |
++-----+--------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> alter table suplr modify column Sid int(4) auto_increment;
+Query OK, 3 rows affected (0.20 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc suplr;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| Sid    | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Sname  | varchar(20) | YES  |     | NULL    |                |
+| Status | varchar(20) | YES  |     | NULL    |                |
+| City   | varchar(20) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from suplr;
++-----+--------+--------+------------+
+| Sid | Sname  | Status | City       |
++-----+--------+--------+------------+
+|   1 | verma  | good   | pune       |
+|   2 | sharma | good   | mumbai     |
+|   3 | kishan | okay   | ahmednagar |
++-----+--------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from shipment;
+Empty set (0.00 sec)
+
+mysql> select * from parts;
++-----+-------+--------+--------+--------+
+| Pid | Pname | Colour | Weight | City   |
++-----+-------+--------+--------+--------+
+|   1 | gear  | black  | 200gms | pune   |
+|   2 | axle  | black  | 200gms | mumbai |
+|   3 | bolt  | black  | 200gms | mumbai |
++-----+-------+--------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into shipment(1,1,1, 'Pune');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,1, 'Pune')' at line 1
+mysql> insert into shipment(1,1,1, "Pune");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,1, "Pune")' at line 1
+mysql> desc shipment;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| Pid   | int(11) | YES  | MUL | NULL    |       |
+| Sid   | int(11) | YES  | MUL | NULL    |       |
+| QTY   | int(11) | YES  |     | NULL    |       |
+| Jid   | int(4)  | YES  | MUL | NULL    |       |
++-------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into shipment(1,1,1, 4);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,1, 4)' at line 1
+mysql> insert into shipment(1,1,4, 1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,4, 1)' at line 1
+mysql> insert into shipment values(1,1,4, 1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from shipment;
++------+------+------+------+
+| Pid  | Sid  | QTY  | Jid  |
++------+------+------+------+
+|    1 |    1 |    4 |    1 |
++------+------+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into shipment values(2,2,4, 1);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from shipment;
++------+------+------+------+
+| Pid  | Sid  | QTY  | Jid  |
++------+------+------+------+
+|    1 |    1 |    4 |    1 |
+|    2 |    2 |    7 |    1 |
+|    2 |    2 |    4 |    1 |
++------+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> update shipment set Pid=3, set Jid=5 where Pid=2 and QTY=4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set Jid=5 where Pid=2 and QTY=4' at line 1
+mysql> update shipment set Pid=3 set Jid=5 where Pid=2 and QTY=4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set Jid=5 where Pid=2 and QTY=4' at line 1
+mysql> update shipment set Pid=3 ,Jid=5 where Pid=2 and QTY=4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shipment;
++------+------+------+------+
+| Pid  | Sid  | QTY  | Jid  |
++------+------+------+------+
+|    1 |    1 |    4 |    1 |
+|    2 |    2 |    7 |    1 |
+|    3 |    2 |    4 |    5 |
++------+------+------+------+
+3 rows in set (0.01 sec)
+
+mysql> select * from suplr where Jid=1 in shipment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shipment' at line 1
+mysql> select * from suplr where Jid=1 from shipment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from shipment' at line 1
+mysql> select * from suplr where Sid=(select Sid from shipment where Jid=1);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from suplr where Sid in (select Sid from shipment where Jid=1);
++-----+--------+--------+--------+
+| Sid | Sname  | Status | City   |
++-----+--------+--------+--------+
+|   1 | verma  | good   | pune   |
+|   2 | sharma | good   | mumbai |
++-----+--------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> insert into suplr(Sname, Status, City) values("Mackenzie", "Good", "London")
+    -> ;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from suplr;
++-----+-----------+--------+------------+
+| Sid | Sname     | Status | City       |
++-----+-----------+--------+------------+
+|   1 | verma     | good   | pune       |
+|   2 | sharma    | good   | mumbai     |
+|   3 | kishan    | okay   | ahmednagar |
+|   4 | Mackenzie | Good   | London     |
++-----+-----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from suplr;
++-----+-----------+--------+------------+
+| Sid | Sname     | Status | City       |
++-----+-----------+--------+------------+
+|   1 | verma     | good   | pune       |
+|   2 | sharma    | good   | mumbai     |
+|   3 | kishan    | okay   | ahmednagar |
+|   4 | Mackenzie | Good   | London     |
++-----+-----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from suplr;
++-----+-----------+--------+------------+
+| Sid | Sname     | Status | City       |
++-----+-----------+--------+------------+
+|   1 | verma     | good   | pune       |
+|   2 | sharma    | good   | mumbai     |
+|   3 | kishan    | okay   | ahmednagar |
+|   4 | Mackenzie | Good   | London     |
++-----+-----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into suplr(Sname, Status, City) values("Queen Elizabeth", "Good", "London");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from suplr;
++-----+-----------------+--------+------------+
+| Sid | Sname           | Status | City       |
++-----+-----------------+--------+------------+
+|   1 | verma           | good   | pune       |
+|   2 | sharma          | good   | mumbai     |
+|   3 | kishan          | okay   | ahmednagar |
+|   4 | Mackenzie       | Good   | London     |
+|   5 | Sup liar        | good   | London     |
+|   6 | Queen Elizabeth | Good   | London     |
++-----+-----------------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> desc parts;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| Pid    | int(4)      | NO   | PRI | NULL    | auto_increment |
+| Pname  | varchar(20) | YES  |     | NULL    |                |
+| Colour | varchar(20) | YES  |     | NULL    |                |
+| Weight | varchar(20) | YES  |     | NULL    |                |
+| City   | varchar(20) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from parts;
++-----+-------+--------+--------+--------+
+| Pid | Pname | Colour | Weight | City   |
++-----+-------+--------+--------+--------+
+|   1 | gear  | black  | 200gms | pune   |
+|   2 | axle  | black  | 200gms | mumbai |
+|   3 | bolt  | black  | 200gms | mumbai |
++-----+-------+--------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from shipment;
++------+------+------+------+
+| Pid  | Sid  | QTY  | Jid  |
++------+------+------+------+
+|    1 |    1 |    4 |    1 |
+|    2 |    2 |    7 |    1 |
+|    3 |    2 |    4 |    5 |
++------+------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into shipment values(1,4,8,4);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into shipment values(2,5,2,3);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from shipment;
++------+------+------+------+
+| Pid  | Sid  | QTY  | Jid  |
++------+------+------+------+
+|    1 |    1 |    4 |    1 |
+|    2 |    2 |    7 |    1 |
+|    3 |    2 |    4 |    5 |
+|    1 |    4 |    8 |    4 |
+|    2 |    5 |    2 |    3 |
++------+------+------+------+
+5 rows in set (0.01 sec)
+
+mysql> insert into shipment values(1,1,2,3);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from shipment;
++------+------+------+------+
+| Pid  | Sid  | QTY  | Jid  |
++------+------+------+------+
+|    1 |    1 |    4 |    1 |
+|    2 |    2 |    7 |    1 |
+|    3 |    2 |    4 |    5 |
+|    1 |    4 |    8 |    4 |
+|    2 |    5 |    2 |    3 |
+|    1 |    1 |    2 |    3 |
++------+------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_suppliers |
++---------------------+
+| parts               |
+| projects            |
+| shipment            |
+| suplr               |
++---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from projects where Jid in (select Jid from shipment where Sid=1);
++-----+---------------+--------+
+| Jid | Jname         | City   |
++-----+---------------+--------+
+|   1 | Drone         | London |
+|   3 | Super highway | China  |
++-----+---------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from parts;
++-----+-------+--------+--------+--------+
+| Pid | Pname | Colour | Weight | City   |
++-----+-------+--------+--------+--------+
+|   1 | gear  | black  | 200gms | pune   |
+|   2 | axle  | black  | 200gms | mumbai |
+|   3 | bolt  | black  | 200gms | mumbai |
++-----+-------+--------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select Colour from parts where Pid in (select Pid from shipment where Sid=1);
++--------+
+| Colour |
++--------+
+| black  |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select Pname from parts union select Colour from parts;
++-------+
+| Pname |
++-------+
+| gear  |
+| axle  |
+| bolt  |
+| black |
++-------+
+4 rows in set (0.00 sec)
+///////------------------------------------------
+mysql> select distinct a.Colour from parts a, shipment b where a.Pid=b.Pid and Sid=1;
++--------+
+| Colour |
++--------+
+| black  |
+| silver |
++--------+
+2 rows in set (0.01 sec)
+
+mysql> select distinct a.Colour from parts as a, shipment as b where a.Pid=b.Pid and Sid=1;
++--------+
+| Colour |
++--------+
+| black  |
+| silver |
++--------+
+2 rows in set (0.00 sec)
+mysql> select p.Pname, q.Colour from parts p cross join parts as q ;
++--------+--------+
+| Pname  | Colour |
++--------+--------+
+| gear   | black  |
+| axle   | black  |
+| bolt   | black  |
+| wheels | black  |
+| gear   | black  |
+| axle   | black  |
+| bolt   | black  |
+| wheels | black  |
+| gear   | black  |
+| axle   | black  |
+| bolt   | black  |
+| wheels | black  |
+| gear   | silver |
+| axle   | silver |
+| bolt   | silver |
+| wheels | silver |
++--------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select p.Pname, q.City from parts p cross join parts as q ;
++--------+--------+
+| Pname  | City   |
++--------+--------+
+| gear   | pune   |
+| axle   | pune   |
+| bolt   | pune   |
+| wheels | pune   |
+| gear   | mumbai |
+| axle   | mumbai |
+| bolt   | mumbai |
+| wheels | mumbai |
+| gear   | mumbai |
+| axle   | mumbai |
+| bolt   | mumbai |
+| wheels | mumbai |
+| gear   | Tokyo  |
+| axle   | Tokyo  |
+| bolt   | Tokyo  |
+| wheels | Tokyo  |
++--------+--------+
+16 rows in set (0.00 sec)
+
+mysql> 
+mysql> select Jid,Sid from shipment group by Sid having count(Sid)>0;
++------+------+
+| Jid  | Sid  |
++------+------+
+|    1 |    1 |
+|    1 |    2 |
+|    4 |    4 |
+|    3 |    5 |
++------+------+
+4 rows in set (0.01 sec)
+
+mysql> select Jid,Sid from shipment group by Sid having count(Sid)>1;
++------+------+
+| Jid  | Sid  |
++------+------+
+|    1 |    1 |
+|    1 |    2 |
++------+------+
+2 rows in set (0.00 sec)
+
