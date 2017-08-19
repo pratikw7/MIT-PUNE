@@ -12,25 +12,30 @@ int main(int argc, char const *argv[])
 	int socketdescriptor,clientdescriptor, clilen;
 	struct sockaddr_in server_addr, client_addr;
 	bzero(&server_addr,sizeof(server_addr));
-	FILE *fp;
+	FILE *f;
 	char filename[100];
 	socketdescriptor = socket(AF_INET, SOCK_STREAM, 0);
 	if(socketdescriptor<0)
 		printf("Error opening socket\n");
 	server_addr.sin_family = AF_INET;
-	server_addr.sin_port = htons(3000);
+	server_addr.sin_port = htons(3001);
 	server_addr.sin_addr.s_addr = INADDR_ANY;
-	if(bind(socketdescriptor,(struct sockaddr * ) &server_addr, sizeof(server_addr))<0) //The bind() system call binds a socket to an address
+	if(bind(socketdescriptor,(struct sockaddr * ) &server_addr, sizeof(struct sockaddr))<0) //The bind() system call binds a socket to an address
 		error("Error in binding");
 	listen(socketdescriptor,5);
-	clilen = sizeof(client_addr);
-	clientdescriptor = accept(socketdescriptor,(struct sockaddr*)&client_addr,clilen);
+	clilen = sizeof(struct sockaddr_in);
+	clientdescriptor = accept(socketdescriptor,(struct sockaddr*)&client_addr,&clilen);
 	char buffer[100];
-	printf("Enter file name\n");
+	printf("Enter name of recieved file\n");
 	scanf("%s",filename);
-	fp=fopen(filename,"r");
-	fscanf(fp, buffer,100);
-	write(socketdescriptor,buffer,100);
-	printf("%s\n", "fiel sent successfully");
+	f=fopen(filename,"w");
+	while(recv(clientdescriptor,buffer,100,0))
+	{	
+		//buffer[i]='\0';
+		printf("%s",buffer);
+		fprintf(f, "%s",buffer);
+	}
+	printf("File recieved successfully\n");
+	close(f);
 	return 0;
 }
