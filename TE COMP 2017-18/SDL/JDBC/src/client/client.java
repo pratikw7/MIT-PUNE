@@ -29,9 +29,9 @@ public class client {
 				System.out.println("1 Insert new student");
 				System.out.println("2 Show database");
 				System.out.println("3 Delete student");
-				System.out.println("4 Modify student");
+				System.out.println("4 Show failed students");
 				System.out.println("5 Search student");
-				System.out.println("6 Calculate average of student");
+				System.out.println("6 Calculate average of students");
 				input = in.nextInt();
 				switch (input) {
 					case 1:
@@ -43,41 +43,32 @@ public class client {
                         break;
 					case 2:
                         dout.writeInt(2);
+                        System.out.println("Roll\tName\tMarks\tClass");
                         System.out.println(din.readUTF());
                         break;
 					case 3:
                         dout.writeInt(3);
-						System.out.println("Enter roll no. of student");
-						roll = in.nextInt();
-						dout.writeInt(roll);
+                        System.out.println("Enter roll number");
+                        int r = in.nextInt();
+                        dout.writeInt(r);
                         System.out.println(din.readUTF());
 						break;
 					case 4:
                         dout.writeInt(4);
-						System.out.println("Enter roll no. of student");
-                        roll = in.nextInt();
-                        dout.writeInt(roll);
-                        if(din.readUTF().equals("found"))
-                        {
-                            Student s=new Student();
-                            InsertStudentValues(s);
-                            oout.writeObject(s);
-                        }
+                        System.out.println("Roll\tName\tMarks\tClass");
+                        System.out.println(din.readUTF());
 						break;
 					case 5:
                         dout.writeInt(5);
 						System.out.println("Enter roll no. of student");
 						roll = in.nextInt();
 						dout.writeInt(roll);
-						Student s = (Student)oin.readObject();
-                        System.out.println(s.toString());
+						System.out.println(din.readUTF());
                         break;
                     case 6:
                         dout.writeInt(6);
-						System.out.println("Enter roll no. of student");
-                        roll = in.nextInt();
-                        dout.writeInt(roll);
-							System.out.println(din.readUTF());
+                        System.out.println("Average marks of students\n");
+						System.out.println(din.readUTF());
 						break;
 					default:
 						break;

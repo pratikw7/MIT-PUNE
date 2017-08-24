@@ -30,6 +30,14 @@ public class Student implements Serializable {
 		{
 			return rollno;
 		}
+		public String GetName()
+		{
+			return name;
+		}
+		public String GetClass()
+		{
+			return classndiv;
+		}
 
 		
 }

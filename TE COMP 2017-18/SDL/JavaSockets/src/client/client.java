@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Scanner;
 
 public class client {
@@ -12,7 +14,7 @@ public class client {
     private static Scanner in = new Scanner(System.in);
 	public static void main(String[] args) {
 		try{
-            Socket cs = new Socket("localhost",3000);
+			Socket cs = new Socket("localhost",3000);
             System.out.println("Client");
 			DataInputStream din = new DataInputStream(cs.getInputStream());
 			DataOutputStream dout = new DataOutputStream(cs.getOutputStream());
