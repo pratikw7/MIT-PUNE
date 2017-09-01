@@ -17,7 +17,7 @@ public class client {
 			DataInputStream din = new DataInputStream(cs.getInputStream());
 			DataOutputStream dout = new DataOutputStream(cs.getOutputStream());
             ObjectOutputStream oout = new ObjectOutputStream(cs.getOutputStream());
-			ObjectInputStream oin = new ObjectInputStream(cs.getInputStream());
+			//ObjectInputStream oin = new ObjectInputStream(cs.getInputStream());
 
             //dout.writeUTF("Hello friend");
 			//dout.flush();
@@ -25,7 +25,6 @@ public class client {
 			int input,roll;
 			do
 			{
-			    //TODO add failed student
 				System.out.println("1 Insert new student");
 				System.out.println("2 Show database");
 				System.out.println("3 Delete student");

@@ -9,20 +9,53 @@ import java.net.Socket;
 import java.rmi.server.Operation;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Server {
-	
-	public static void main(String[] args) throws SQLException {
+	ExecutorService pool = null;
+	public Server() {
+		pool = Executors.newFixedThreadPool(5);
+	}
+	public void startServer()
+	{
 		try{
 			ServerSocket ss = new ServerSocket(3000);
+			while(true) {
 			System.out.println("Waiting for client to join...");
 			Socket cs = ss.accept();
 			System.out.println("Found");
+			ServerThread clientThread = new ServerThread(cs);
+			pool.execute(clientThread);
+			//ss.close();
+			}
+		}
+		catch (Exception e) {
+			
+		}
+	}
+	public static void main(String[] args) throws SQLException {
+		new Server().startServer();
+
+	}
+
+}
+class ServerThread implements Runnable
+{
+	Socket cs = null;
+	public ServerThread(Socket Socket) {
+		this.cs = Socket;
+		
+	}
+	@Override
+	public void run() {
+		try{
+			
 			DataInputStream din = new DataInputStream(cs.getInputStream());
 			DataOutputStream dout = new DataOutputStream(cs.getOutputStream());
             ObjectInputStream oin = new ObjectInputStream(cs.getInputStream());
-            ObjectOutputStream oout = new ObjectOutputStream(cs.getOutputStream());
+            //ObjectOutputStream oout = new ObjectOutputStream(cs.getOutputStream());
             Student s;
             int input,roll;
             do
@@ -58,13 +91,12 @@ public class Server {
                 }
                 input = din.readInt();
             }while(input==0);
-			ss.close();
+			
 			System.out.println("Closed");
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-
+		
 	}
-
 }
