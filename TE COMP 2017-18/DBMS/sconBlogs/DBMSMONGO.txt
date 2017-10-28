@@ -1,0 +1,1448 @@
+//-----------------------------------------
+Display all posts information
+db.post.find().pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Brief history of Voyager",
+	"description" : "The 40 year journey into the unknown",
+	"by" : "NASA",
+	"url" : "www.nasa.gov",
+	"tags" : [
+		"NASA",
+		"Voyager",
+		"Space"
+	],
+	"likes" : 150,
+	"comments" : [
+		{
+			"user" : "Registered user",
+			"message" : "Truly amazing",
+			"dateCreated" : ISODate("2017-05-12T03:10:00Z"),
+			"like" : 40
+		},
+		{
+			"user" : "Random kid",
+			"message" : "I want to be an astronaut",
+			"dateCreated" : ISODate("2017-05-12T03:40:00Z"),
+			"like" : 100
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c206650cb360ec70e7482f"),
+	"title" : "MongoDB Overview",
+	"description" : "MongoDB is a nosql database",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"mongoDB",
+		"Database",
+		"NoSql"
+	],
+	"likes" : 100,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "User1 comment",
+			"dateCreated" : ISODate("2011-02-19T20:45:00Z"),
+			"likes" : 0
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c207370cb360ec70e74830"),
+	"title" : "Why PC>Console",
+	"description" : "PC is always better in every measurable way",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"PC",
+		"Console",
+		"Master Race"
+	],
+	"likes" : 100000,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2012-02-19T20:45:00Z"),
+			"likes" : 32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208300cb360ec70e74831"),
+	"title" : "Fight Club is awesome",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton"
+	],
+	"likes" : 100020,
+	"comments" : [
+		{
+			"user" : "Aswhin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208e00cb360ec70e74832"),
+	"title" : "Quentin Tarantino is amazing",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton",
+		"Fight Club"
+	],
+	"likes" : 120020,
+	"comments" : [
+		{
+			"user" : "Ashwin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209409756b14229468f01"),
+	"title" : "Gravitational Waves",
+	"description" : "Hear two blackholes collide",
+	"by" : "LIGO",
+	"url" : "www.google.com/?search=LIGO",
+	"tags" : [
+		"LIGO",
+		"Gravity",
+		"Einstein"
+	],
+	"likes" : 200,
+	"comments" : [
+		{
+			"user" : "Physics grad",
+			"message" : "Einstein was correct",
+			"dateCreated" : ISODate("2015-09-15T05:10:00Z"),
+			"like" : 140
+		},
+		{
+			"user" : "News",
+			"message" : "Can someone explain this!",
+			"dateCreated" : ISODate("2015-09-12T03:40:00Z"),
+			"like" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209489756b14229468f02"),
+	"title" : "Martian review",
+	"description" : "Matt Damon stuck on another planet again!",
+	"by" : "Critic",
+	"url" : "www.imdb.com",
+	"tags" : [
+		"Martian",
+		"Matt Daemon",
+		"Stuck",
+		"Ridley Scott"
+	],
+	"likes" : 541,
+	"comments" : [
+		{
+			"user" : "Anonymous User",
+			"message" : "Brilliant moive",
+			"dateCreated" : ISODate("2016-08-05T13:40:00Z"),
+			"like" : 499
+		},
+		{
+			"user" : "Andy Weir",
+			"message" : "My book is better",
+			"dateCreated" : ISODate("2016-08-28T04:10:00Z"),
+			"like" : 500
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209680cb360ec70e74833"),
+	"title" : "CSGO is a hazard to human health",
+	"description" : "Title is self explanatory",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://store.steampowered.com",
+	"tags" : [
+		"Video Games",
+		"Counter Strike",
+		"Counter terrorists",
+		"Valve"
+	],
+	"likes" : -120020,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a210cb360ec70e74834"),
+	"title" : "Raksha Bandhan",
+	"description" : "Bhide's least favourite holiday",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://google.co.in",
+	"tags" : [
+		"Sisters",
+		"Help",
+		"Gifts",
+		"Broke"
+	],
+	"likes" : 120020,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2017-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a409756b14229468f03"),
+	"title" : "Lavasa Trip",
+	"description" : "Finally I went to Lavasa !!",
+	"by" : "Raajas",
+	"url" : "www.secrettumblrblog.com",
+	"tags" : [
+		"Lavasa",
+		"Road Trip",
+		"Rains",
+		"Fun"
+	],
+	"likes" : 6,
+	"comments" : [
+		{
+			"user" : "Soham",
+			"message" : "You didn't call me :( ",
+			"dateCreated" : ISODate("2017-10-01T03:07:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Aniket",
+			"message" : "I had to wakeup at 6 AM !! ",
+			"dateCreated" : ISODate("2017-10-01T07:07:00Z"),
+			"like" : 2
+		}
+	]
+}
+//--------------------------------------
+Increment value of likes in one record($inc)
+db.post.update({title: "Lavasa Trip"},{$inc: {likes : 3}})
+//---------------------------------------
+Push some more tags ($push)
+db.post.update({by:"NASA"}, {$push: {tags: "Interstellar"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.post.find().pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Brief history of Voyager",
+	"description" : "The 40 year journey into the unknown",
+	"by" : "NASA",
+	"url" : "www.nasa.gov",
+	"tags" : [
+		"NASA",
+		"Voyager",
+		"Space",
+		"Interstellar"
+	],
+	"likes" : 240281,
+	"comments" : [
+		{
+			"user" : "Registered user",
+			"message" : "Truly amazing",
+			"dateCreated" : ISODate("2017-05-12T03:10:00Z"),
+			"like" : 40
+		},
+		{
+			"user" : "Random kid",
+			"message" : "I want to be an astronaut",
+			"dateCreated" : ISODate("2017-05-12T03:40:00Z"),
+			"like" : 100
+		}
+	]
+}
+//----------------------------------------------
+Pop some comments($pop)
+db.post.update({by:"LIGO"}, {$pop: {comments:1}}) //Removes from end, -1 removes from start
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+{
+	"_id" : ObjectId("59c209409756b14229468f01"),
+	"title" : "Gravitational Waves",
+	"description" : "Hear two blackholes collide",
+	"by" : "LIGO",
+	"url" : "www.google.com/?search=LIGO",
+	"tags" : [
+		"LIGO",
+		"Gravity",
+		"Einstein"
+	],
+	"likes" : 241,
+	"comments" : [
+		{
+			"user" : "Physics grad",
+			"message" : "Einstein was correct",
+			"dateCreated" : ISODate("2015-09-15T05:10:00Z"),
+			"like" : 140
+		}
+	]
+}
+//------------------------------------------
+Replace existing record with new record(update)
+db.post.save({_id: ObjectId("59c205bd9756b14229468f00"),title:"Note 8 review", by:"Marques Brownley",url:"youtube.com/mkbhd",tags:["tech","smartphone","best of 2017" ], likes:20000000, comments:[{user:"Verge", message:"Nice review. Only if our channel was so cool", dateCreated:new Date(), likes:20}]})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.post.find().pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Note 8 review",
+	"by" : "Marques Brownley",
+	"url" : "youtube.com/mkbhd",
+	"tags" : [
+		"tech",
+		"smartphone",
+		"best of 2017"
+	],
+	"likes" : 20000000,
+	"comments" : [
+		{
+			"user" : "Verge",
+			"message" : "Nice review. Only if our channel was so cool",
+			"dateCreated" : ISODate("2017-09-24T11:24:38.842Z"),
+			"likes" : 20
+		}
+	]
+}
+//---------------------------------------------------
+set the new title 'New MongoDB Tutorial' of the documents whose title is 'MongoDB Overview'.($set)
+db.post.update({title:"MongoDB Overview"},{$set:{title:"New MongoDB Tutorial"}})
+{
+	"_id" : ObjectId("59c206650cb360ec70e7482f"),
+	"title" : "New MongoDB Tutorial",
+	"description" : "MongoDB is a nosql database",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"mongoDB",
+		"Database",
+		"NoSql"
+	],
+	"likes" : 141,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "User1 comment",
+			"dateCreated" : ISODate("2011-02-19T20:45:00Z"),
+			"likes" : 0
+		}
+	]
+}
+//-------------------------------------------------------
+Add one record if doesn’t exist else update($upsert)
+db.post.update(
+... {title: "epic article"},
+... {
+... by:"Neil deGrasse Tyson",
+... likes: 2000},
+... {upsert: true}
+... )
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 1,
+	"nModified" : 0,
+	"_id" : ObjectId("59cdc27cf306a7fd1a480f8c")
+})
+{
+	"_id" : ObjectId("59cdc27cf306a7fd1a480f8c"),
+	"by" : "Neil deGrasse Tyson",
+	"likes" : 2000
+}
+//------------------------------------------------------
+Remove all the documents whose title is MongoDB Overview
+db.post.remove({title: "New MongoDB Tutorial"})
+WriteResult({ "nRemoved" : 1 })
+> db.post.find().pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Note 8 review",
+	"by" : "Marques Brownley",
+	"url" : "youtube.com/mkbhd",
+	"tags" : [
+		"tech",
+		"smartphone",
+		"best of 2017"
+	],
+	"likes" : 20000000,
+	"comments" : [
+		{
+			"user" : "Verge",
+			"message" : "Nice review. Only if our channel was so cool",
+			"dateCreated" : ISODate("2017-09-24T11:24:38.842Z"),
+			"likes" : 20
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c207370cb360ec70e74830"),
+	"title" : "Why PC>Console",
+	"description" : "PC is always better in every measurable way",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"PC",
+		"Console",
+		"Master Race"
+	],
+	"likes" : 100041,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2012-02-19T20:45:00Z"),
+			"likes" : 32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208300cb360ec70e74831"),
+	"title" : "Fight Club is awesome",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton"
+	],
+	"likes" : 100061,
+	"comments" : [
+		{
+			"user" : "Aswhin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208e00cb360ec70e74832"),
+	"title" : "Quentin Tarantino is amazing",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton",
+		"Fight Club"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Ashwin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209409756b14229468f01"),
+	"title" : "Gravitational Waves",
+	"description" : "Hear two blackholes collide",
+	"by" : "LIGO",
+	"url" : "www.google.com/?search=LIGO",
+	"tags" : [
+		"LIGO",
+		"Gravity",
+		"Einstein"
+	],
+	"likes" : 241,
+	"comments" : [
+		{
+			"user" : "Physics grad",
+			"message" : "Einstein was correct",
+			"dateCreated" : ISODate("2015-09-15T05:10:00Z"),
+			"like" : 140
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209489756b14229468f02"),
+	"title" : "Martian review",
+	"description" : "Matt Damon stuck on another planet again!",
+	"by" : "Critic",
+	"url" : "www.imdb.com",
+	"tags" : [
+		"Martian",
+		"Matt Daemon",
+		"Stuck",
+		"Ridley Scott"
+	],
+	"likes" : 582,
+	"comments" : [
+		{
+			"user" : "Anonymous User",
+			"message" : "Brilliant moive",
+			"dateCreated" : ISODate("2016-08-05T13:40:00Z"),
+			"like" : 499
+		},
+		{
+			"user" : "Andy Weir",
+			"message" : "My book is better",
+			"dateCreated" : ISODate("2016-08-28T04:10:00Z"),
+			"like" : 500
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209680cb360ec70e74833"),
+	"title" : "CSGO is a hazard to human health",
+	"description" : "Title is self explanatory",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://store.steampowered.com",
+	"tags" : [
+		"Video Games",
+		"Counter Strike",
+		"Counter terrorists",
+		"Valve"
+	],
+	"likes" : -119979,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a210cb360ec70e74834"),
+	"title" : "Raksha Bandhan",
+	"description" : "Bhide's least favourite holiday",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://google.co.in",
+	"tags" : [
+		"Sisters",
+		"Help",
+		"Gifts",
+		"Broke"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2017-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a409756b14229468f03"),
+	"title" : "Lavasa Trip",
+	"description" : "Finally I went to Lavasa !!",
+	"by" : "Raajas",
+	"url" : "www.secrettumblrblog.com",
+	"tags" : [
+		"Lavasa",
+		"Road Trip",
+		"Rains",
+		"Fun"
+	],
+	"likes" : 51,
+	"comments" : [
+		{
+			"user" : "Soham",
+			"message" : "You didn't call me :( ",
+			"dateCreated" : ISODate("2017-10-01T03:07:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Aniket",
+			"message" : "I had to wakeup at 6 AM !! ",
+			"dateCreated" : ISODate("2017-10-01T07:07:00Z"),
+			"like" : 2
+		}
+	]
+}
+{
+	"_id" : ObjectId("59cdc27cf306a7fd1a480f8c"),
+	"by" : "Neil deGrasse Tyson",
+	"likes" : 2000
+}
+> 
+//-----------------------------------------------------
+Use $gte,$gt,$lt operators and fire queries.
+db.post.find({likes:{$gte:10000}}).pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Note 8 review",
+	"by" : "Marques Brownley",
+	"url" : "youtube.com/mkbhd",
+	"tags" : [
+		"tech",
+		"smartphone",
+		"best of 2017"
+	],
+	"likes" : 20000000,
+	"comments" : [
+		{
+			"user" : "Verge",
+			"message" : "Nice review. Only if our channel was so cool",
+			"dateCreated" : ISODate("2017-09-24T11:24:38.842Z"),
+			"likes" : 20
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c207370cb360ec70e74830"),
+	"title" : "Why PC>Console",
+	"description" : "PC is always better in every measurable way",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"PC",
+		"Console",
+		"Master Race"
+	],
+	"likes" : 100041,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2012-02-19T20:45:00Z"),
+			"likes" : 32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208300cb360ec70e74831"),
+	"title" : "Fight Club is awesome",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton"
+	],
+	"likes" : 100061,
+	"comments" : [
+		{
+			"user" : "Aswhin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208e00cb360ec70e74832"),
+	"title" : "Quentin Tarantino is amazing",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton",
+		"Fight Club"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Ashwin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a210cb360ec70e74834"),
+	"title" : "Raksha Bandhan",
+	"description" : "Bhide's least favourite holiday",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://google.co.in",
+	"tags" : [
+		"Sisters",
+		"Help",
+		"Gifts",
+		"Broke"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2017-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+db.post.find({likes:{$gt:120061}}).pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Note 8 review",
+	"by" : "Marques Brownley",
+	"url" : "youtube.com/mkbhd",
+	"tags" : [
+		"tech",
+		"smartphone",
+		"best of 2017"
+	],
+	"likes" : 20000000,
+	"comments" : [
+		{
+			"user" : "Verge",
+			"message" : "Nice review. Only if our channel was so cool",
+			"dateCreated" : ISODate("2017-09-24T11:24:38.842Z"),
+			"likes" : 20
+		}
+	]
+}
+db.post.find({likes:{$lt:100}}).pretty()
+{
+	"_id" : ObjectId("59c209680cb360ec70e74833"),
+	"title" : "CSGO is a hazard to human health",
+	"description" : "Title is self explanatory",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://store.steampowered.com",
+	"tags" : [
+		"Video Games",
+		"Counter Strike",
+		"Counter terrorists",
+		"Valve"
+	],
+	"likes" : -119979,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a409756b14229468f03"),
+	"title" : "Lavasa Trip",
+	"description" : "Finally I went to Lavasa !!",
+	"by" : "Raajas",
+	"url" : "www.secrettumblrblog.com",
+	"tags" : [
+		"Lavasa",
+		"Road Trip",
+		"Rains",
+		"Fun"
+	],
+	"likes" : 51,
+	"comments" : [
+		{
+			"user" : "Soham",
+			"message" : "You didn't call me :( ",
+			"dateCreated" : ISODate("2017-10-01T03:07:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Aniket",
+			"message" : "I had to wakeup at 6 AM !! ",
+			"dateCreated" : ISODate("2017-10-01T07:07:00Z"),
+			"like" : 2
+		}
+	]
+}
+> 
+//---------------------------------------------------------------------
+Find records having tags ‘mongodb’
+db.post.find({tags:"Fun"}).pretty()
+{
+	"_id" : ObjectId("59c20a409756b14229468f03"),
+	"title" : "Lavasa Trip",
+	"description" : "Finally I went to Lavasa !!",
+	"by" : "Raajas",
+	"url" : "www.secrettumblrblog.com",
+	"tags" : [
+		"Lavasa",
+		"Road Trip",
+		"Rains",
+		"Fun"
+	],
+	"likes" : 51,
+	"comments" : [
+		{
+			"user" : "Soham",
+			"message" : "You didn't call me :( ",
+			"dateCreated" : ISODate("2017-10-01T03:07:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Aniket",
+			"message" : "I had to wakeup at 6 AM !! ",
+			"dateCreated" : ISODate("2017-10-01T07:07:00Z"),
+			"like" : 2
+		}
+	]
+}
+> 
+//-------------------------------------------------------------------
+Find records having more than 3 likes
+db.post.find({likes:{$gt:3}}).pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Note 8 review",
+	"by" : "Marques Brownley",
+	"url" : "youtube.com/mkbhd",
+	"tags" : [
+		"tech",
+		"smartphone",
+		"best of 2017"
+	],
+	"likes" : 20000000,
+	"comments" : [
+		{
+			"user" : "Verge",
+			"message" : "Nice review. Only if our channel was so cool",
+			"dateCreated" : ISODate("2017-09-24T11:24:38.842Z"),
+			"likes" : 20
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c207370cb360ec70e74830"),
+	"title" : "Why PC>Console",
+	"description" : "PC is always better in every measurable way",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"PC",
+		"Console",
+		"Master Race"
+	],
+	"likes" : 100041,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2012-02-19T20:45:00Z"),
+			"likes" : 32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208300cb360ec70e74831"),
+	"title" : "Fight Club is awesome",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton"
+	],
+	"likes" : 100061,
+	"comments" : [
+		{
+			"user" : "Aswhin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208e00cb360ec70e74832"),
+	"title" : "Quentin Tarantino is amazing",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton",
+		"Fight Club"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Ashwin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209409756b14229468f01"),
+	"title" : "Gravitational Waves",
+	"description" : "Hear two blackholes collide",
+	"by" : "LIGO",
+	"url" : "www.google.com/?search=LIGO",
+	"tags" : [
+		"LIGO",
+		"Gravity",
+		"Einstein"
+	],
+	"likes" : 241,
+	"comments" : [
+		{
+			"user" : "Physics grad",
+			"message" : "Einstein was correct",
+			"dateCreated" : ISODate("2015-09-15T05:10:00Z"),
+			"like" : 140
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209489756b14229468f02"),
+	"title" : "Martian review",
+	"description" : "Matt Damon stuck on another planet again!",
+	"by" : "Critic",
+	"url" : "www.imdb.com",
+	"tags" : [
+		"Martian",
+		"Matt Daemon",
+		"Stuck",
+		"Ridley Scott"
+	],
+	"likes" : 582,
+	"comments" : [
+		{
+			"user" : "Anonymous User",
+			"message" : "Brilliant moive",
+			"dateCreated" : ISODate("2016-08-05T13:40:00Z"),
+			"like" : 499
+		},
+		{
+			"user" : "Andy Weir",
+			"message" : "My book is better",
+			"dateCreated" : ISODate("2016-08-28T04:10:00Z"),
+			"like" : 500
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a210cb360ec70e74834"),
+	"title" : "Raksha Bandhan",
+	"description" : "Bhide's least favourite holiday",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://google.co.in",
+	"tags" : [
+		"Sisters",
+		"Help",
+		"Gifts",
+		"Broke"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2017-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a409756b14229468f03"),
+	"title" : "Lavasa Trip",
+	"description" : "Finally I went to Lavasa !!",
+	"by" : "Raajas",
+	"url" : "www.secrettumblrblog.com",
+	"tags" : [
+		"Lavasa",
+		"Road Trip",
+		"Rains",
+		"Fun"
+	],
+	"likes" : 51,
+	"comments" : [
+		{
+			"user" : "Soham",
+			"message" : "You didn't call me :( ",
+			"dateCreated" : ISODate("2017-10-01T03:07:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Aniket",
+			"message" : "I had to wakeup at 6 AM !! ",
+			"dateCreated" : ISODate("2017-10-01T07:07:00Z"),
+			"like" : 2
+		}
+	]
+}
+{
+	"_id" : ObjectId("59cdc27cf306a7fd1a480f8c"),
+	"by" : "Neil deGrasse Tyson",
+	"likes" : 2000
+}
+> 
+//-------------------------------------------------
+Find all records starting with title ‘M’
+db.post.find({"title":{$regex:/M/}})
+{ "_id" : ObjectId("59c209489756b14229468f02"), "title" : "Martian review", "description" : "Matt Damon stuck on another planet again!", "by" : "Critic", "url" : "www.imdb.com", "tags" : [ "Martian", "Matt Daemon", "Stuck", "Ridley Scott" ], "likes" : 582, "comments" : [ { "user" : "Anonymous User", "message" : "Brilliant moive", "dateCreated" : ISODate("2016-08-05T13:40:00Z"), "like" : 499 }, { "user" : "Andy Weir", "message" : "My book is better", "dateCreated" : ISODate("2016-08-28T04:10:00Z"), "like" : 500 } ] }
+//--------------------------------------------------
+Find all records having Mongo in their title
+db.post.find({"title":{$regex:/review/}})
+{ "_id" : ObjectId("59c205bd9756b14229468f00"), "title" : "Note 8 review", "by" : "Marques Brownley", "url" : "youtube.com/mkbhd", "tags" : [ "tech", "smartphone", "best of 2017" ], "likes" : 20000000, "comments" : [ { "user" : "Verge", "message" : "Nice review. Only if our channel was so cool", "dateCreated" : ISODate("2017-09-24T11:24:38.842Z"), "likes" : 20 } ] }
+{ "_id" : ObjectId("59c209489756b14229468f02"), "title" : "Martian review", "description" : "Matt Damon stuck on another planet again!", "by" : "Critic", "url" : "www.imdb.com", "tags" : [ "Martian", "Matt Daemon", "Stuck", "Ridley Scott" ], "likes" : 582, "comments" : [ { "user" : "Anonymous User", "message" : "Brilliant moive", "dateCreated" : ISODate("2016-08-05T13:40:00Z"), "like" : 499 }, { "user" : "Andy Weir", "message" : "My book is better", "dateCreated" : ISODate("2016-08-28T04:10:00Z"), "like" : 500 } ] }
+//----------------------------------------------------
+Find total count of records in your collection.
+ db.post.count()
+10
+//-----------------------------------------------------
+All the documents where the number of tags is four.($size)
+db.post.find({tags:{$size:4}}).pretty()
+{
+	"_id" : ObjectId("59c208300cb360ec70e74831"),
+	"title" : "Fight Club is awesome",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton"
+	],
+	"likes" : 100061,
+	"comments" : [
+		{
+			"user" : "Aswhin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209489756b14229468f02"),
+	"title" : "Martian review",
+	"description" : "Matt Damon stuck on another planet again!",
+	"by" : "Critic",
+	"url" : "www.imdb.com",
+	"tags" : [
+		"Martian",
+		"Matt Daemon",
+		"Stuck",
+		"Ridley Scott"
+	],
+	"likes" : 582,
+	"comments" : [
+		{
+			"user" : "Anonymous User",
+			"message" : "Brilliant moive",
+			"dateCreated" : ISODate("2016-08-05T13:40:00Z"),
+			"like" : 499
+		},
+		{
+			"user" : "Andy Weir",
+			"message" : "My book is better",
+			"dateCreated" : ISODate("2016-08-28T04:10:00Z"),
+			"like" : 500
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209680cb360ec70e74833"),
+	"title" : "CSGO is a hazard to human health",
+	"description" : "Title is self explanatory",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://store.steampowered.com",
+	"tags" : [
+		"Video Games",
+		"Counter Strike",
+		"Counter terrorists",
+		"Valve"
+	],
+	"likes" : -119979,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a210cb360ec70e74834"),
+	"title" : "Raksha Bandhan",
+	"description" : "Bhide's least favourite holiday",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://google.co.in",
+	"tags" : [
+		"Sisters",
+		"Help",
+		"Gifts",
+		"Broke"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2017-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a409756b14229468f03"),
+	"title" : "Lavasa Trip",
+	"description" : "Finally I went to Lavasa !!",
+	"by" : "Raajas",
+	"url" : "www.secrettumblrblog.com",
+	"tags" : [
+		"Lavasa",
+		"Road Trip",
+		"Rains",
+		"Fun"
+	],
+	"likes" : 51,
+	"comments" : [
+		{
+			"user" : "Soham",
+			"message" : "You didn't call me :( ",
+			"dateCreated" : ISODate("2017-10-01T03:07:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Aniket",
+			"message" : "I had to wakeup at 6 AM !! ",
+			"dateCreated" : ISODate("2017-10-01T07:07:00Z"),
+			"like" : 2
+		}
+	]
+}
+> 
+//-----------------------------------------------------------------------
+Display the title of the document while querying the document
+ db.post.find({},{title:1})
+{ "_id" : ObjectId("59c205bd9756b14229468f00"), "title" : "Note 8 review" }
+{ "_id" : ObjectId("59c207370cb360ec70e74830"), "title" : "Why PC>Console" }
+{ "_id" : ObjectId("59c208300cb360ec70e74831"), "title" : "Fight Club is awesome" }
+{ "_id" : ObjectId("59c208e00cb360ec70e74832"), "title" : "Quentin Tarantino is amazing" }
+{ "_id" : ObjectId("59c209409756b14229468f01"), "title" : "Gravitational Waves" }
+{ "_id" : ObjectId("59c209489756b14229468f02"), "title" : "Martian review" }
+{ "_id" : ObjectId("59c209680cb360ec70e74833"), "title" : "CSGO is a hazard to human health" }
+{ "_id" : ObjectId("59c20a210cb360ec70e74834"), "title" : "Raksha Bandhan" }
+{ "_id" : ObjectId("59c20a409756b14229468f03"), "title" : "Lavasa Trip" }
+{ "_id" : ObjectId("59cdc27cf306a7fd1a480f8c") }
+//---------------------------------------------------------------------
+Display the documents sorted by title in descending order
+db.post.find().sort({title:-1}).pretty()
+{
+	"_id" : ObjectId("59c207370cb360ec70e74830"),
+	"title" : "Why PC>Console",
+	"description" : "PC is always better in every measurable way",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"PC",
+		"Console",
+		"Master Race"
+	],
+	"likes" : 100041,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2012-02-19T20:45:00Z"),
+			"likes" : 32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a210cb360ec70e74834"),
+	"title" : "Raksha Bandhan",
+	"description" : "Bhide's least favourite holiday",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://google.co.in",
+	"tags" : [
+		"Sisters",
+		"Help",
+		"Gifts",
+		"Broke"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2017-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208e00cb360ec70e74832"),
+	"title" : "Quentin Tarantino is amazing",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton",
+		"Fight Club"
+	],
+	"likes" : 120061,
+	"comments" : [
+		{
+			"user" : "Ashwin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Note 8 review",
+	"by" : "Marques Brownley",
+	"url" : "youtube.com/mkbhd",
+	"tags" : [
+		"tech",
+		"smartphone",
+		"best of 2017"
+	],
+	"likes" : 20000000,
+	"comments" : [
+		{
+			"user" : "Verge",
+			"message" : "Nice review. Only if our channel was so cool",
+			"dateCreated" : ISODate("2017-09-24T11:24:38.842Z"),
+			"likes" : 20
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209489756b14229468f02"),
+	"title" : "Martian review",
+	"description" : "Matt Damon stuck on another planet again!",
+	"by" : "Critic",
+	"url" : "www.imdb.com",
+	"tags" : [
+		"Martian",
+		"Matt Daemon",
+		"Stuck",
+		"Ridley Scott"
+	],
+	"likes" : 582,
+	"comments" : [
+		{
+			"user" : "Anonymous User",
+			"message" : "Brilliant moive",
+			"dateCreated" : ISODate("2016-08-05T13:40:00Z"),
+			"like" : 499
+		},
+		{
+			"user" : "Andy Weir",
+			"message" : "My book is better",
+			"dateCreated" : ISODate("2016-08-28T04:10:00Z"),
+			"like" : 500
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c20a409756b14229468f03"),
+	"title" : "Lavasa Trip",
+	"description" : "Finally I went to Lavasa !!",
+	"by" : "Raajas",
+	"url" : "www.secrettumblrblog.com",
+	"tags" : [
+		"Lavasa",
+		"Road Trip",
+		"Rains",
+		"Fun"
+	],
+	"likes" : 51,
+	"comments" : [
+		{
+			"user" : "Soham",
+			"message" : "You didn't call me :( ",
+			"dateCreated" : ISODate("2017-10-01T03:07:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Aniket",
+			"message" : "I had to wakeup at 6 AM !! ",
+			"dateCreated" : ISODate("2017-10-01T07:07:00Z"),
+			"like" : 2
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209409756b14229468f01"),
+	"title" : "Gravitational Waves",
+	"description" : "Hear two blackholes collide",
+	"by" : "LIGO",
+	"url" : "www.google.com/?search=LIGO",
+	"tags" : [
+		"LIGO",
+		"Gravity",
+		"Einstein"
+	],
+	"likes" : 241,
+	"comments" : [
+		{
+			"user" : "Physics grad",
+			"message" : "Einstein was correct",
+			"dateCreated" : ISODate("2015-09-15T05:10:00Z"),
+			"like" : 140
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c208300cb360ec70e74831"),
+	"title" : "Fight Club is awesome",
+	"description" : "Title is self explanatory",
+	"by" : "Aniket Sanap",
+	"url" : "https://imdb.com",
+	"tags" : [
+		"Quentin Tarantino",
+		"Brad Pitt",
+		"Bellatrix",
+		"Edward Norton"
+	],
+	"likes" : 100061,
+	"comments" : [
+		{
+			"user" : "Aswhin Vaidya",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : -32132
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c209680cb360ec70e74833"),
+	"title" : "CSGO is a hazard to human health",
+	"description" : "Title is self explanatory",
+	"by" : "Ashwin Vaidya",
+	"url" : "https://store.steampowered.com",
+	"tags" : [
+		"Video Games",
+		"Counter Strike",
+		"Counter terrorists",
+		"Valve"
+	],
+	"likes" : -119979,
+	"comments" : [
+		{
+			"user" : "Aniket Sanap",
+			"message" : "You are not correct",
+			"dateCreated" : ISODate("2012-03-19T20:45:00Z"),
+			"likes" : 2321322
+		}
+	]
+}
+{
+	"_id" : ObjectId("59cdc27cf306a7fd1a480f8c"),
+	"by" : "Neil deGrasse Tyson",
+	"likes" : 2000
+}
+> 
+//--------------------------------------------------------
+Show all the tutorials written by tutorials point and whose title is MongoDB Overview
+db.post.find({title:"Gravitational Waves",by:"LIGO"}).pretty()
+{
+	"_id" : ObjectId("59c209409756b14229468f01"),
+	"title" : "Gravitational Waves",
+	"description" : "Hear two blackholes collide",
+	"by" : "LIGO",
+	"url" : "www.google.com/?search=LIGO",
+	"tags" : [
+		"LIGO",
+		"Gravity",
+		"Einstein"
+	],
+	"likes" : 241,
+	"comments" : [
+		{
+			"user" : "Physics grad",
+			"message" : "Einstein was correct",
+			"dateCreated" : ISODate("2015-09-15T05:10:00Z"),
+			"like" : 140
+		}
+	]
+}
+//------------------------------------------------------
+Display only 2 documents while querying the document
+db.post.find().limit(2).pretty()
+{
+	"_id" : ObjectId("59c205bd9756b14229468f00"),
+	"title" : "Note 8 review",
+	"by" : "Marques Brownley",
+	"url" : "youtube.com/mkbhd",
+	"tags" : [
+		"tech",
+		"smartphone",
+		"best of 2017"
+	],
+	"likes" : 20000000,
+	"comments" : [
+		{
+			"user" : "Verge",
+			"message" : "Nice review. Only if our channel was so cool",
+			"dateCreated" : ISODate("2017-09-24T11:24:38.842Z"),
+			"likes" : 20
+		}
+	]
+}
+{
+	"_id" : ObjectId("59c207370cb360ec70e74830"),
+	"title" : "Why PC>Console",
+	"description" : "PC is always better in every measurable way",
+	"by" : "Aniket Sanap",
+	"url" : "https://google.com",
+	"tags" : [
+		"PC",
+		"Console",
+		"Master Race"
+	],
+	"likes" : 100041,
+	"comments" : [
+		{
+			"user" : "User1",
+			"message" : "You are correct",
+			"dateCreated" : ISODate("2012-02-19T20:45:00Z"),
+			"likes" : 32132
+		}
+	]
+}
+> 
+//------------------------------------------------------------
+Locate all the documents that contain the tags “mongodb”,”nosql”.($all)
+db.post.find({tags:{$all : ["Console", "PC"]}})
+{ "_id" : ObjectId("59c207370cb360ec70e74830"), "title" : "Why PC>Console", "description" : "PC is always better in every measurable way", "by" : "Aniket Sanap", "url" : "https://google.com", "tags" : [ "PC", "Console", "Master Race" ], "likes" : 100041, "comments" : [ { "user" : "User1", "message" : "You are correct", "dateCreated" : ISODate("2012-02-19T20:45:00Z"), "likes" : 32132 } ] }
+//-----------------------------------------------------------
+Drop collection
+db.post.drop()
+true
+> db.post.find()

@@ -1,0 +1,25 @@
+import javax.swing.*;
+public class DBConnect {
+	public static void main(String[] args)
+	{
+		JFrame frame = new JFrame();
+		frame.setSize(500, 700);
+		
+		JButton bInsert = new JButton("Insert");
+		JButton bDelete = new JButton("Delete");
+		JButton bUpdate = new JButton("Update");
+		JButton bSelect = new JButton("Select");
+		
+		bInsert.setBounds(150,300,100,50);
+		bDelete.setBounds(350,300,100,50);
+		bUpdate.setBounds(150,400,100,50);
+		bSelect.setBounds(350,400,100,50);
+		
+		frame.add(bInsert);
+		frame.add(bDelete);
+		frame.add(bUpdate);
+		frame.add(bSelect);
+		frame.setLayout(null);
+		frame.setVisible(true);
+	}
+}

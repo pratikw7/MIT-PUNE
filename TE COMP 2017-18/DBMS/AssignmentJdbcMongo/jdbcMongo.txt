@@ -1,0 +1,233 @@
+
+import java.sql.*;
+import java.util.Iterator;
+import java.util.Scanner;
+
+import org.bson.Document;
+
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+public class Operations {
+
+	/**
+	 * @param args
+	 * @throws ClassNotFoundException 
+	 * @throws SQLException 
+	 */
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		// Creating a Mongo client 
+	      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+	   
+	      // Creating Credentials 
+	      MongoCredential credential; 
+	      credential = MongoCredential.createCredential("sampleUser", "Students", 
+	         "password".toCharArray()); 
+	      System.out.println("Connected to the database successfully");  
+	    //Accessing the database 
+	      MongoDatabase database = mongo.getDatabase("Students"); 
+	      
+	   // Retieving a collection
+	      MongoCollection<Document> collection = database.getCollection("StdLog"); 
+	      System.out.println("Collection myCollection selected successfully"); 
+	      
+		int select,roll;
+		String name,branch;
+		Scanner scan=new Scanner(System.in);		 
+		do{
+			System.out.println("\n\n*****Enter****\n1.Insert\n2.Delete\n3.Select\n4.Update\n5.Exit\n");
+			System.out.println("Enter your choice: ");
+			select=scan.nextInt();
+			switch(select)
+			{
+			case 1:
+				System.out.print("StudId:");
+				roll=scan.nextInt();
+				System.out.print("Name:");
+				name=scan.next();
+				System.out.print("Branch:");
+				branch=scan.next();				
+				Document document = new Document("StudId",roll) 
+			      .append("Name",name)
+			      .append("Branch",branch);
+				collection.insertOne(document); 
+				System.out.println(" "+roll+" added");			 				 
+				break;
+			case 2:
+				System.out.println("Enter number to be deleted:");
+				roll=scan.nextInt();
+				// Deleting the documents 
+			      collection.deleteOne(Filters.eq("StudId", roll)); 
+			      System.out.println("Document deleted successfully...");
+			      break;
+			case 3:
+				System.out.println("Student Info:\n");
+				 // Getting the iterable object 
+			      FindIterable<Document> iterDoc = collection.find(); 
+			      int i = 1; 
+
+			      // Getting the iterator 
+			      Iterator it = iterDoc.iterator(); 
+			    
+			      while (it.hasNext()) {  
+			         System.out.println(it.next());  
+			      i++; 
+			      }				
+				break;
+			case 4:
+				System.out.println("Enter number to be Updated:");
+				roll=scan.nextInt();
+				// Getting the iterable object 
+			      FindIterable<Document> iterDoc1 = collection.find(Filters.eq("StudId", roll)); 
+			      int i1 = 1; 
+
+			      // Getting the iterator 
+			      Iterator it1 = iterDoc1.iterator(); 
+			    
+			      while (it1.hasNext()) {  
+			         System.out.println(it1.next());  
+			      i1++; 
+			      }			
+				//get branch
+				System.out.print("\nEnter the new branch of Student:\t");
+				branch=scan.next();
+				//update query
+				collection.updateOne(Filters.eq("StudId",roll), Updates.set("Branch",branch));       
+				
+				System.out.println("Roll "+roll+" updated\n");
+				break;
+			case 5:
+				System.out.println("Bye Bye");
+				break;
+			}
+		}while(select!=5);
+	}
+
+}
+
+
+
+
+
+////////////////////////////OUTPUT//////////////////////////////
+/*
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+3
+Student Info:
+
+Document{{_id=59d47c0d80172011caa53b55, StudId=1, Name=aditya, Branch=comp}}
+
+
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+1
+StudId:2
+Name:Naruto
+Branch:Computer1
+ 2 added
+
+
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+3
+Student Info:
+
+Document{{_id=59d47c0d80172011caa53b55, StudId=1, Name=aditya, Branch=comp}}
+Document{{_id=59d4839e80172013eb777979, StudId=2, Name=Naruto, Branch=Computer1}}
+
+
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+2
+Enter number to be deleted:
+1
+Document deleted successfully...
+
+
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+3
+Student Info:
+
+Document{{_id=59d4839e80172013eb777979, StudId=2, Name=Naruto, Branch=Computer1}}
+
+
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+4
+Enter number to be Updated:
+2
+Document{{_id=59d4839e80172013eb777979, StudId=2, Name=Naruto, Branch=Computer1}}
+
+Enter the new branch of Student:	TE-Comp1
+Roll 2 updated
+
+
+
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+3
+Student Info:
+
+Document{{_id=59d4839e80172013eb777979, StudId=2, Name=Naruto, Branch=TE-Comp1}}
+
+
+*****Enter****
+1.Insert
+2.Delete
+3.Select
+4.Update
+5.Exit
+
+Enter your choice: 
+5
+Bye Bye
+*/

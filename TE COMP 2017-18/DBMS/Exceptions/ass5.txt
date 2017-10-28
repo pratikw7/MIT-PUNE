@@ -1,0 +1,340 @@
+mysql> create database new 
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use new;
+Database changed
+mysql> create table stud(Roll int , Att int , Status char(2));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc stud;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| Roll   | int(11) | YES  |     | NULL    |       |
+| Att    | int(11) | YES  |     | NULL    |       |
+| Status | char(2) | YES  |     | NULL    |       |
++--------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into stud (Roll,Att) values(1,95);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into stud (Roll,Att) values(2,45);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into stud (Roll,Att) values(3,85);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into stud (Roll,Att) values(3,65);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> delete from  stud where Att=65 ;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into stud (Roll,Att) values(4,65);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into stud (Roll,Att) values(5,76);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> delimiter //
+mysql> create procedure proc(in v_roll int)
+    -> begin
+    -> declare v_attnd int default=0;
+    -> v_finished int default 0;
+    -> declare continue handler for not found set v_finished=1;
+    -> select attnd into v_attnd from stud where roll=v_roll;
+    -> if v_finished=1 then 
+    -> select 'Student Not Present';
+    -> end if ;
+    -> if v_attnd <75 then 
+    -> update stud set Status='D' where Roll= v_roll; 
+    -> else 
+    -> update stud set Status='ND' where Roll=v_roll;
+    -> end if ;
+    -> end//
+
+
+
+mysql> create procedure proc(in v_roll int) begin declare v_attnd int default 0;declare v_finished int default 0; declare continue handler for not found set v_finished=1; select Att into v_attnd from stud where Roll=v_roll; if v_finished=1 then  select 'Student Not Present'; end if ; if v_attnd <75 then  update stud set Status='D' where Roll= v_roll;  else  update stud set Status='ND' where Roll=v_roll; end if ; end//
+ERROR 1304 (42000): PROCEDURE proc already exists
+mysql> drop procedure proc;
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create procedure proc(in v_roll int) begin declare v_attnd int default 0;declare v_finished int default 0; declare continue handler for not found set v_finished=1; select Att into v_attnd from stud where Roll=v_roll; if v_finished=1 then  select 'Student Not Present'; end if ; if v_attnd <75 then  update stud set Status='D' where Roll= v_roll;  else  update stud set Status='ND' where Roll=v_roll; end if ; end//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc(1);
+    -> //
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from student ; 
+    -> //
+ERROR 1146 (42S02): Table 'new.student' doesn't exist
+mysql> select * from stud ; 
+    -> //
++------+------+--------+
+| Roll | Att  | Status |
++------+------+--------+
+|    1 |   95 | ND     |
+|    2 |   45 | NULL   |
+|    3 |   85 | NULL   |
+|    4 |   65 | NULL   |
+|    5 |   76 | NULL   |
++------+------+--------+
+5 rows in set (0.00 sec)
+mysql> call proc(6);
+        ->//
++---------------------+
+| Student Not Present |
++---------------------+
+| Student Not Present |
++---------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+mysql> call proc(2);
+    -> //
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from stud ; 
+    -> //
++------+------+--------+
+| Roll | Att  | Status |
++------+------+--------+
+|    1 |   95 | ND     |
+|    2 |   45 | D      |
+|    3 |   85 | NULL   |
+|    4 |   65 | NULL   |
+|    5 |   76 | NULL   |
++------+------+--------+
+5 rows in set (0.00 sec)
+
+
+
+------------------------------------------------------------2------------------------------------------------
+mysql> create table Borrower(Roll_no int , Name varchar(20), Dateofissue date , Nameofbook varchar (20), Status char (1));
+    -> //
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> delimiter ;
+mysql> alter table Borrower add Primary key (Roll_no);  
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table Fine(Roll_no int , Retdate date , Amt int ); 
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc Borrower; 
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Roll_no     | int(11)     | NO   | PRI | 0       |       |
+| Name        | varchar(20) | YES  |     | NULL    |       |
+| Dateofissue | date        | YES  |     | NULL    |       |
+| Nameofbook  | varchar(20) | YES  |     | NULL    |       |
+| Status      | char(1)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc Fine;
++---------+---------+------+-----+---------+-------+
+| Field   | Type    | Null | Key | Default | Extra |
++---------+---------+------+-----+---------+-------+
+| Roll_no | int(11) | YES  |     | NULL    |       |
+| Retdate | date    | YES  |     | NULL    |       |
+| Amt     | int(11) | YES  |     | NULL    |       |
++---------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Borrower (1,'a','2017-08-07' , 'CompleteJavaReference','I' ); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,'a','2017-08-07' , 'CompleteJavaReference','I' )' at line 1
+mysql> insert into Borrower values(1,'a','2017-08-07' , 'CompleteJavaReference','I' ); 
+Query OK, 1 row affected, 1 warning (0.03 sec)
+
+mysql> insert into Borrower values(2,'b','2017-07-27' , 'CompleteC++Reference','I' ); 
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Borrower values(3,'c','2017-07-17' , 'LetusC','I' ); Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Borrower values(4,'d','2017-08-16' , 'Database Systems','I' ); 
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Borrower values(5,'e','2017-08-06' , 'Database Concepts','I' ); 
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from Borrower;
++---------+------+-------------+----------------------+--------+
+| Roll_no | Name | Dateofissue | Nameofbook           | Status |
++---------+------+-------------+----------------------+--------+
+|       1 | a    | 2017-08-07  | CompleteJavaReferenc | I      |
+|       2 | b    | 2017-07-27  | CompleteC++Reference | I      |
+|       3 | c    | 2017-07-17  | LetusC               | I      |
+|       4 | d    | 2017-08-16  | Database Systems     | I      |
+|       5 | e    | 2017-08-06  | Database Concepts    | I      |
++---------+------+-------------+----------------------+--------+
+5 rows in set (0.00 sec)
+mysql>						// EXCEPTION HANDLING  delimiter //                                                                                                                            mysql> create procedure proc1 (in v_roll int, in v_bookname varchar(20) )
+    -> begin
+    -> declare v_idate date default curdate();
+    -> declare v_finished int default 0;
+    -> declare v_diff int default 0;
+    -> declare v_fine int default 0;
+    -> declare continue handler for not found set v_finished=1;
+    -> select Dateofissue,Nameofbook into v_idate, v_bookname from Borrower where Roll_no=v_roll and Nameofbook=v_bookname;
+    -> if v_finished=1 then
+    -> SIGNAL SQLSTATE '45001'
+    -> SET MESSAGE_TEXT = 'INVALID ROLL NO ';
+    -> end if;
+    -> set v_diff=datediff(curdate(),v_idate);
+    -> if v_diff>=15 and v_diff<=30  then
+    -> set v_fine=5*v_diff;
+    -> elseif  v_diff>30  then
+    -> set v_fine=50*v_diff;
+    -> else
+    -> set v_fine=0;
+    -> end if;
+    -> select v_fine;
+    -> insert into Fine values(v_roll,curdate(),v_fine);
+    -> update Borrower set status='R' where Roll_no=v_roll;
+    -> end //
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc1(6);
+    -> //
+ERROR 1644 (45001): INVALID ROLL NO 
+mysql> call proc1(5);
+    -> //
++--------+
+| v_fine |
++--------+
+|     80 |
++--------+
+1 row in set (0.00 sec)
+
+Query OK, 1 row affected (0.10 sec)
+
+mysql> call proc1(2);
+    -> //
++--------+
+| v_fine |
++--------+
+|    130 |
++--------+
+1 row in set (0.00 sec)
+
+Query OK, 1 row affected (0.14 sec)
+
+mysql> call proc1(1);
+    -> //
++--------+
+| v_fine |
++--------+
+|     75 |
++--------+
+1 row in set (0.01 sec)
+
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from Borrower;
+    -> //
++---------+------+-------------+----------------------+--------+
+| Roll_no | Name | Dateofissue | Nameofbook           | Status |
++---------+------+-------------+----------------------+--------+
+|       1 | a    | 2017-08-07  | CompleteJavaReferenc | R      |
+|       2 | b    | 2017-07-27  | CompleteC++Reference | R      |
+|       3 | c    | 2017-07-17  | LetusC               | I      |
+|       4 | d    | 2017-08-16  | Database Systems     | I      |
+|       5 | e    | 2017-08-06  | Database Concepts    | R      |
++---------+------+-------------+----------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Fine;
+    -> //
++---------+------------+------+
+| Roll_no | Retdate    | Amt  |
++---------+------------+------+
+|       5 | 2017-08-22 |   80 |
+|       2 | 2017-08-22 |  130 |
+|       1 | 2017-08-22 |   75 |
++---------+------------+------+
+3 rows in set (0.00 sec)
+
+------------------------------------- USER DEFINED EXCEPTION--------------------------------
+mysql> create procedure proc2(in v_roll int , in v_bookname varchar(20))
+    -> begin
+    -> declare v_idate date default curdate();
+    -> declare v_finished int default 0;
+    -> declare v_diff int default 0;
+    -> declare v_fine int default 0;
+    -> DECLARE Too_late CONDITION FOR SQLSTATE '22012';
+    -> DECLARE CONTINUE HANDLER FOR Too_late RESIGNAL SET MESSAGE_TEXT = ‘Too late to Submit the Book!’;
+    -> declare continue handler for not found set v_finished=1;
+    -> select Dateofissue, Nameofbook into v_idate, v_bookname from Borrower where Roll_no=v_roll and Nameofbook=v_bookname;
+    -> if v_finished=1 then
+    -> SIGNAL SQLSTATE '45001'
+    -> SET MESSAGE_TEXT = 'INVALID ROLL NO';
+    -> end if;
+    -> set v_diff=datediff(curdate(),v_idate);
+    -> if v_diff>=15 and v_diff<=30  then
+    -> set v_fine=5*v_diff;
+    -> elseif  v_diff>30 and v_diff<50 then
+    -> set v_fine=50*v_diff;
+    -> else 
+    -> signal Too_late;
+    -> end if;
+    -> select v_fine;
+    -> insert into Fine values(v_roll,curdate(),v_fine);
+    -> update Borrower set status='R' where Roll_no=v_roll;
+    -> end //
+Query OK, 0 rows affected (0.00 sec)
+mysql> insert into Borrower values(6,'f','2017-06-06' , 'C#','I');
+    -> //
+Query OK, 1 row affected (0.27 sec)
+
+mysql> call proc2(6);
+    -> //
+ERROR 1644 (22012): Too late to Submit!!
+mysql> call proc2(3);
+    -> //
++--------+
+| v_fine |
++--------+
+|   1800 |
++--------+
+1 row in set (0.00 sec)
+
+Query OK, 1 row affected (0.37 sec)
+
+mysql> call proc2(4);
+    -> //
+ERROR 1644 (22012): Too late to Submit!!
+mysql> select * from Borrower;
+    -> //
++---------+------+-------------+----------------------+--------+
+| Roll_no | Name | Dateofissue | Nameofbook           | Status |
++---------+------+-------------+----------------------+--------+
+|       1 | a    | 2017-08-07  | CompleteJavaReferenc | R      |
+|       2 | b    | 2017-07-27  | CompleteC++Reference | R      |
+|       3 | c    | 2017-07-17  | LetusC               | R      |
+|       4 | d    | 2017-08-16  | Database Systems     | I      |
+|       5 | e    | 2017-08-06  | Database Concepts    | R      |
+|       6 | f    | 2017-06-06  | C#                   | I      |
++---------+------+-------------+----------------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Fine;
+    -> //
++---------+------------+------+
+| Roll_no | Retdate    | Amt  |
++---------+------------+------+
+|       5 | 2017-08-22 |   80 |
+|       2 | 2017-08-22 |  130 |
+|       1 | 2017-08-22 |   75 |
+|       3 | 2017-08-22 | 1800 |
++---------+------------+------+
+4 rows in set (0.00 sec)
+
+

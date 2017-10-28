@@ -1,0 +1,479 @@
+db.col1.find().pretty()
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836c"),
+	"title" : "MongoDB Overview",
+	"description" : "MongoDB is no sql database",
+	"by" : "tutorials point",
+	"url" : "http://www.tutorialspoint.com",
+	"tags" : [
+		"mongodb",
+		"database",
+		"NoSQL"
+	],
+	"likes" : 100,
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "My first comment",
+			"dateCreated" : ISODate("2011-01-20T02:15:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "user2",
+			"message" : "My second comments",
+			"dateCreated" : ISODate("2011-01-25T07:45:00Z"),
+			"like" : 5
+		}
+	]
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836d"),
+	"title" : "Aggregation test",
+	"description" : "random documtent",
+	"by" : "Ashwin",
+	"url" : "http://www.ashwin.com",
+	"tags" : [
+		"mongodb",
+		"database",
+		"NoSQL"
+	],
+	"likes" : 19,
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "My first comment",
+			"dateCreated" : ISODate("2017-01-25T07:45:00Z"),
+			"like" : 12
+		},
+		{
+			"user" : "user2",
+			"message" : "My second comments",
+			"dateCreated" : ISODate("2016-07-25T07:45:00Z"),
+			"like" : 35
+		}
+	]
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836e"),
+	"title" : "The Origin of species",
+	"description" : "evolution",
+	"by" : "Charles Darwin",
+	"url" : "http://google.com",
+	"tags" : [
+		"biology",
+		"evolution",
+		"species"
+	],
+	"likes" : 190,
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "My first comment",
+			"dateCreated" : ISODate("2015-11-25T07:45:00Z"),
+			"like" : 42
+		},
+		{
+			"user" : "user2",
+			"message" : "My second comments",
+			"dateCreated" : ISODate("2015-11-25T07:45:00Z"),
+			"like" : 30
+		}
+	]
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836f"),
+	"title" : "Relativistic Rocket",
+	"description" : "Einstein",
+	"by" : "Ashwin",
+	"url" : "http://www.google.com",
+	"tags" : [
+		"einstein",
+		"relativity",
+		"physics"
+	],
+	"likes" : 519,
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "My first comment",
+			"dateCreated" : ISODate("2017-09-25T07:45:00Z"),
+			"like" : 33
+		},
+		{
+			"user" : "user2",
+			"message" : "My second comments",
+			"dateCreated" : ISODate("2017-09-25T07:45:00Z"),
+			"like" : 135
+		}
+	]
+}
+{
+	"_id" : ObjectId("59d457b582918e903f85a700"),
+	"title" : "Another Doc",
+	"description" : "some desc",
+	"by" : "Joker",
+	"url" : "http://www.dc.com",
+	"tags" : [
+		"gotham",
+		"arkham",
+		"harley"
+	],
+	"likes" : 50000,
+	"comments" : [
+		{
+			"user" : "Grodon",
+			"message" : "I'll find you",
+			"dateCreated" : ISODate("2016-11-20T02:15:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Batman",
+			"message" : "He is mine",
+			"dateCreated" : ISODate("2016-11-25T07:45:00Z"),
+			"like" : 100
+		}
+	]
+}
+{
+	"_id" : ObjectId("59d457c482918e903f85a701"),
+	"title" : "Fire",
+	"description" : "Some news",
+	"by" : "Clark Kent",
+	"url" : "http://www.mag.com",
+	"tags" : [
+		"sup",
+		"metropolis",
+		"fire"
+	],
+	"likes" : 20000,
+	"comments" : [
+		{
+			"user" : "mayor",
+			"message" : "My first comment",
+			"dateCreated" : ISODate("2016-01-20T02:15:00Z"),
+			"like" : 0
+		},
+		{
+			"user" : "Louise",
+			"message" : "My second comments",
+			"dateCreated" : ISODate("2016-01-25T07:45:00Z"),
+			"like" : 5
+		}
+	]
+}
+//------------------------------------------------------------
+Q1. Display a list that how many tutorials are written by each user
+> db.col1.aggregate([{$group : {_id : "$by", num_tutorial : {$sum : 1}}}]  )
+{ "_id" : "Clark Kent", "num_tutorial" : 1 }
+{ "_id" : "tutorials point", "num_tutorial" : 1 }
+{ "_id" : "Ashwin", "num_tutorial" : 2 }
+{ "_id" : "Charles Darwin", "num_tutorial" : 1 }
+{ "_id" : "Joker", "num_tutorial" : 1 }
+//------------------------------------------------------------------
+Q2. Compute the top five urls .($sum,$sort)
+	db.col1.aggregate([{$group: {_id: '$url', totalLikes: {$sum: '$likes'}}},{$sort:{totalLikes:-1}}])
+{ "_id" : "http://www.dc.com", "totalLikes" : 50000 }
+{ "_id" : "http://www.mag.com", "totalLikes" : 20000 }
+{ "_id" : "http://www.google.com", "totalLikes" : 519 }
+{ "_id" : "http://google.com", "totalLikes" : 190 }
+{ "_id" : "http://www.tutorialspoint.com", "totalLikes" : 100 }
+//------------------------------------------------------------------
+Q3. Return url having likes above 1000.($match,$sum)
+> db.col1.aggregate([{$group: {_id: '$url', totalLikes: {$sum: '$likes'}}},{$match:{totalLikes:{$gte:1000}}}])
+{ "_id" : "http://www.dc.com", "totalLikes" : 50000 }
+{ "_id" : "http://www.mag.com", "totalLikes" : 20000 }
+//------------------------------------------------------------------
+Q4. Return all 'comments' from user 'sam' .($unwind)
+db.col1.aggregate([ {$unwind:"$comments"},{$match: {"comments.user": "user1"}}]).pretty()
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836c"),
+	"title" : "MongoDB Overview",
+	"description" : "MongoDB is no sql database",
+	"by" : "tutorials point",
+	"url" : "http://www.tutorialspoint.com",
+	"tags" : [
+		"mongodb",
+		"database",
+		"NoSQL"
+	],
+	"likes" : 100,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2011-01-20T02:15:00Z"),
+		"like" : 0
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836d"),
+	"title" : "Aggregation test",
+	"description" : "random documtent",
+	"by" : "Ashwin",
+	"url" : "http://www.ashwin.com",
+	"tags" : [
+		"mongodb",
+		"database",
+		"NoSQL"
+	],
+	"likes" : 19,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2017-01-25T07:45:00Z"),
+		"like" : 12
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836e"),
+	"title" : "The Origin of species",
+	"description" : "evolution",
+	"by" : "Charles Darwin",
+	"url" : "http://google.com",
+	"tags" : [
+		"biology",
+		"evolution",
+		"species"
+	],
+	"likes" : 190,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2015-11-25T07:45:00Z"),
+		"like" : 42
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836f"),
+	"title" : "Relativistic Rocket",
+	"description" : "Einstein",
+	"by" : "Ashwin",
+	"url" : "http://www.google.com",
+	"tags" : [
+		"einstein",
+		"relativity",
+		"physics"
+	],
+	"likes" : 519,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2017-09-25T07:45:00Z"),
+		"like" : 33
+	}
+}
+> 
+//-----------------------------------------------------------------------
+Q5. Find total likes for “'http: //www.tutorialspoint.com'” only
+db.col1.aggregate([{$group: {_id: '$url', totalLikes: {$sum: '$likes'}}}, {$match: {_id: 'http://www.tutorialspoint.com'}}])
+{ "_id" : "http://www.tutorialspoint.com", "totalLikes" : 100 }
+//-----------------------------------------------------------------------
+Q6. Get all comments created after '2012-11-22'
+db.col1.aggregate([ {$unwind:"$comments"},{$match: {"comments.dateCreated": {$gt: ISODate("2012-11-22T00:00:00Z")}}}]).pretty()
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836d"),
+	"title" : "Aggregation test",
+	"description" : "random documtent",
+	"by" : "Ashwin",
+	"url" : "http://www.ashwin.com",
+	"tags" : [
+		"mongodb",
+		"database",
+		"NoSQL"
+	],
+	"likes" : 19,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2017-01-25T07:45:00Z"),
+		"like" : 12
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836d"),
+	"title" : "Aggregation test",
+	"description" : "random documtent",
+	"by" : "Ashwin",
+	"url" : "http://www.ashwin.com",
+	"tags" : [
+		"mongodb",
+		"database",
+		"NoSQL"
+	],
+	"likes" : 19,
+	"comments" : {
+		"user" : "user2",
+		"message" : "My second comments",
+		"dateCreated" : ISODate("2016-07-25T07:45:00Z"),
+		"like" : 35
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836e"),
+	"title" : "The Origin of species",
+	"description" : "evolution",
+	"by" : "Charles Darwin",
+	"url" : "http://google.com",
+	"tags" : [
+		"biology",
+		"evolution",
+		"species"
+	],
+	"likes" : 190,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2015-11-25T07:45:00Z"),
+		"like" : 42
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836e"),
+	"title" : "The Origin of species",
+	"description" : "evolution",
+	"by" : "Charles Darwin",
+	"url" : "http://google.com",
+	"tags" : [
+		"biology",
+		"evolution",
+		"species"
+	],
+	"likes" : 190,
+	"comments" : {
+		"user" : "user2",
+		"message" : "My second comments",
+		"dateCreated" : ISODate("2015-11-25T07:45:00Z"),
+		"like" : 30
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836f"),
+	"title" : "Relativistic Rocket",
+	"description" : "Einstein",
+	"by" : "Ashwin",
+	"url" : "http://www.google.com",
+	"tags" : [
+		"einstein",
+		"relativity",
+		"physics"
+	],
+	"likes" : 519,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2017-09-25T07:45:00Z"),
+		"like" : 33
+	}
+}
+{
+	"_id" : ObjectId("59d453e57c6624eb8227836f"),
+	"title" : "Relativistic Rocket",
+	"description" : "Einstein",
+	"by" : "Ashwin",
+	"url" : "http://www.google.com",
+	"tags" : [
+		"einstein",
+		"relativity",
+		"physics"
+	],
+	"likes" : 519,
+	"comments" : {
+		"user" : "user2",
+		"message" : "My second comments",
+		"dateCreated" : ISODate("2017-09-25T07:45:00Z"),
+		"like" : 135
+	}
+}
+{
+	"_id" : ObjectId("59d457b582918e903f85a700"),
+	"title" : "Another Doc",
+	"description" : "some desc",
+	"by" : "Joker",
+	"url" : "http://www.dc.com",
+	"tags" : [
+		"gotham",
+		"arkham",
+		"harley"
+	],
+	"likes" : 50000,
+	"comments" : {
+		"user" : "Grodon",
+		"message" : "I'll find you",
+		"dateCreated" : ISODate("2016-11-20T02:15:00Z"),
+		"like" : 0
+	}
+}
+{
+	"_id" : ObjectId("59d457b582918e903f85a700"),
+	"title" : "Another Doc",
+	"description" : "some desc",
+	"by" : "Joker",
+	"url" : "http://www.dc.com",
+	"tags" : [
+		"gotham",
+		"arkham",
+		"harley"
+	],
+	"likes" : 50000,
+	"comments" : {
+		"user" : "Batman",
+		"message" : "He is mine",
+		"dateCreated" : ISODate("2016-11-25T07:45:00Z"),
+		"like" : 100
+	}
+}
+{
+	"_id" : ObjectId("59d457c482918e903f85a701"),
+	"title" : "Fire",
+	"description" : "Some news",
+	"by" : "Clark Kent",
+	"url" : "http://www.mag.com",
+	"tags" : [
+		"sup",
+		"metropolis",
+		"fire"
+	],
+	"likes" : 20000,
+	"comments" : {
+		"user" : "mayor",
+		"message" : "My first comment",
+		"dateCreated" : ISODate("2016-01-20T02:15:00Z"),
+		"like" : 0
+	}
+}
+{
+	"_id" : ObjectId("59d457c482918e903f85a701"),
+	"title" : "Fire",
+	"description" : "Some news",
+	"by" : "Clark Kent",
+	"url" : "http://www.mag.com",
+	"tags" : [
+		"sup",
+		"metropolis",
+		"fire"
+	],
+	"likes" : 20000,
+	"comments" : {
+		"user" : "Louise",
+		"message" : "My second comments",
+		"dateCreated" : ISODate("2016-01-25T07:45:00Z"),
+		"like" : 5
+	}
+}
+> 
+//---------------------------------------------------
+Q7. Return the Five Most Common “tags”
+db.col1.aggregate([{$unwind: '$tags'}, {$group: {_id: '$tags', count: {$sum: 1}}}, {$sort: {count: -1}}, {$limit : 5}])
+{ "_id" : "database", "count" : 2 }
+{ "_id" : "mongodb", "count" : 2 }
+{ "_id" : "NoSQL", "count" : 2 }
+{ "_id" : "fire", "count" : 1 }
+{ "_id" : "arkham", "count" : 1 }
+//------------------------------------------------------
+Q8 Get the total count of the number of comments among all users
+> db.col1.aggregate([{$unwind: '$comments'},{$group: {_id: '$comments.user', count: {$sum: 1}}}, {$sort: {count: -1}}])
+{ "_id" : "user1", "count" : 4 }
+{ "_id" : "user2", "count" : 4 }
+{ "_id" : "mayor", "count" : 1 }
+{ "_id" : "Louise", "count" : 1 }
+{ "_id" : "Grodon", "count" : 1 }
+{ "_id" : "Batman", "count" : 1 }

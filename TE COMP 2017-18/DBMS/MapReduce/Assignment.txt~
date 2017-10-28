@@ -1,0 +1,77 @@
+{
+	"_id" : ObjectId("59d4793761e7f0bb2ccbb493"),
+	"id" : 0,
+	"name" : "Sam Flynn",
+	"email" : "sam.flynn@encom.com",
+	"work" : "Unemployed",
+	"age" : 27,
+	"gender" : "male",
+	"salary" : 160000000000,
+	"hobbies" : [
+		"Parachuting",
+		"Hacking",
+		"Skydiving"
+	]
+}
+{
+	"_id" : ObjectId("59d4797561e7f0bb2ccbb494"),
+	"id" : 1,
+	"name" : "Kevin Flynn",
+	"email" : "kevin.flynn@encom.com",
+	"work" : "Unemployed",
+	"age" : 60,
+	"gender" : "male",
+	"salary" : 360000000000,
+	"hobbies" : [
+		"Programmming",
+		"Hacking",
+		"Game Development"
+	]
+}
+{
+	"_id" : ObjectId("59d479d861e7f0bb2ccbb495"),
+	"id" : 2,
+	"name" : "Tron",
+	"email" : "noreply@encom.com",
+	"work" : "Security",
+	"age" : 20,
+	"gender" : "male",
+	"salary" : 0,
+	"hobbies" : [
+		"Fighting",
+		"Disk Throw",
+		"Light Cycle"
+	]
+}
+{
+	"_id" : ObjectId("59d47a3a61e7f0bb2ccbb496"),
+	"id" : 3,
+	"name" : "Quora",
+	"email" : "noreply@encom.com",
+	"work" : "Survivor",
+	"age" : 27,
+	"gender" : "female",
+	"salary" : 0,
+	"hobbies" : [
+		"Fighting",
+		"Light Cycle",
+		"Sloar Sailing"
+	]
+}
+{
+	"_id" : ObjectId("59d47b1861e7f0bb2ccbb497"),
+	"id" : 4,
+	"name" : "Electra",
+	"email" : "electra@hellskitchen.com",
+	"work" : "Assasin",
+	"age" : 27,
+	"gender" : "female",
+	"salary" : 90000,
+	"hobbies" : [
+		"Fighting"
+	]
+}
+> 
+//------------------------------------------------
+Q1. Get the count of Males and Females
+
